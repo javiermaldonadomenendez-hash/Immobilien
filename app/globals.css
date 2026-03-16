@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --charcoal: #1a1a1a;
+    --offwhite: #f9f9f9;
+    --gold: #c5a059;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-offwhite text-charcoal font-sans antialiased;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #1a1a1a;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #c5a059;
+    border-radius: 0;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #d4b577;
+  }
+
+  /* Select dropdown override for dark backgrounds */
+  select option {
+    background-color: #1a1a1a;
+    color: #f9f9f9;
+  }
+}
+
+@layer components {
+  .section-label {
+    @apply text-gold text-xs tracking-[0.3em] uppercase font-sans font-medium;
+  }
+
+  .section-title {
+    @apply font-serif text-4xl md:text-5xl lg:text-6xl font-bold leading-tight;
+  }
+
+  .section-title-dark {
+    @apply section-title text-charcoal;
+  }
+
+  .section-title-light {
+    @apply section-title text-offwhite;
+  }
+
+  .btn-primary {
+    @apply bg-gold text-charcoal px-8 py-4 text-sm font-medium tracking-widest uppercase
+           hover:bg-gold-light transition-all duration-300 inline-block;
+  }
+
+  .btn-outline {
+    @apply border border-gold text-gold px-8 py-4 text-sm font-medium tracking-widest uppercase
+           hover:bg-gold hover:text-charcoal transition-all duration-300 inline-block;
+  }
+
+  .gold-line {
+    @apply w-12 h-px bg-gold;
+  }
+
+  .card-hover {
+    @apply transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .clip-diagonal {
+    clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+  }
+}
