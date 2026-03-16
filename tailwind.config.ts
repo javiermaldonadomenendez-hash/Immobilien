@@ -9,36 +9,33 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        charcoal: {
-          DEFAULT: '#1a1a1a',
-          light: '#2a2a2a',
-          mid: '#333333',
-        },
-        offwhite: {
-          DEFAULT: '#f9f9f9',
-          dark: '#f0ede8',
-        },
-        gold: {
-          DEFAULT: '#c5a059',
-          light: '#d4b577',
-          dark: '#a8863d',
-          muted: '#c5a05920',
-        },
-        warm: {
-          gray: '#8a8a8a',
-          light: '#e5e5e0',
-          border: '#2e2e2e',
-        },
+        ink: '#0A0A0A',
+        paper: '#FFFFFF',
+        'grey-50':  '#FAFAFA',
+        'grey-100': '#F4F4F4',
+        'grey-200': '#E8E8E8',
+        'grey-300': '#D0D0D0',
+        'grey-400': '#A0A0A0',
+        'grey-500': '#808080',
+        'grey-600': '#5A5A5A',
+        'grey-800': '#2A2A2A',
       },
       fontFamily: {
-        serif: ['var(--font-playfair)', 'Georgia', 'serif'],
-        sans: ['var(--font-inter)', 'Helvetica Neue', 'sans-serif'],
+        display: ['var(--font-bebas)', 'Impact', 'Arial Narrow', 'sans-serif'],
+        sans:    ['var(--font-inter)', 'Helvetica Neue', 'Arial', 'sans-serif'],
       },
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+      fontSize: {
+        '10xl': ['10rem',  { lineHeight: '0.9' }],
+        '11xl': ['12rem',  { lineHeight: '0.88' }],
+        '12xl': ['14rem',  { lineHeight: '0.85' }],
+        '13xl': ['16rem',  { lineHeight: '0.82' }],
       },
-      transitionTimingFunction: {
-        'smooth': 'cubic-bezier(0.4, 0, 0.2, 1)',
+      letterSpacing: {
+        'editorial': '0.25em',
+        'widest-2': '0.35em',
+      },
+      borderWidth: {
+        '0.5': '0.5px',
       },
     },
   },

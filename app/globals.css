@@ -3,88 +3,90 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
-    --charcoal: #1a1a1a;
-    --offwhite: #f9f9f9;
-    --gold: #c5a059;
-  }
-
   html {
     scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   body {
-    @apply bg-offwhite text-charcoal font-sans antialiased;
+    @apply bg-paper text-ink font-sans;
+    font-size: 14px;
   }
 
-  * {
-    box-sizing: border-box;
+  * { box-sizing: border-box; }
+
+  ::selection {
+    background-color: #0A0A0A;
+    color: #FFFFFF;
   }
 
-  /* Custom scrollbar */
-  ::-webkit-scrollbar {
-    width: 6px;
-  }
-  ::-webkit-scrollbar-track {
-    background: #1a1a1a;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: #c5a059;
-    border-radius: 0;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: #d4b577;
-  }
+  /* Monochrome scrollbar */
+  ::-webkit-scrollbar       { width: 4px; }
+  ::-webkit-scrollbar-track { background: #FAFAFA; }
+  ::-webkit-scrollbar-thumb { background: #0A0A0A; }
 
-  /* Select dropdown override for dark backgrounds */
-  select option {
-    background-color: #1a1a1a;
-    color: #f9f9f9;
-  }
+  /* Dark select options */
+  select option { background: #0A0A0A; color: #FFFFFF; }
 }
 
 @layer components {
-  .section-label {
-    @apply text-gold text-xs tracking-[0.3em] uppercase font-sans font-medium;
+
+  /* ─── Labels ────────────────────────────────────── */
+  .label {
+    @apply font-sans text-[10px] font-medium uppercase tracking-[0.3em] text-grey-400;
+  }
+  .label-dark {
+    @apply label text-grey-600;
   }
 
-  .section-title {
-    @apply font-serif text-4xl md:text-5xl lg:text-6xl font-bold leading-tight;
+  /* ─── Section headlines ─────────────────────────── */
+  .display-xl {
+    @apply font-display text-[clamp(5rem,12vw,11rem)] leading-none uppercase tracking-tight;
+  }
+  .display-lg {
+    @apply font-display text-[clamp(3.5rem,8vw,7rem)] leading-none uppercase tracking-tight;
+  }
+  .display-md {
+    @apply font-display text-[clamp(2.5rem,5vw,4.5rem)] leading-none uppercase tracking-tight;
   }
 
-  .section-title-dark {
-    @apply section-title text-charcoal;
+  /* ─── Buttons ───────────────────────────────────── */
+  .btn-ink {
+    @apply inline-flex items-center gap-3 bg-ink text-paper px-8 py-3.5
+           text-[10px] font-sans font-semibold tracking-[0.25em] uppercase
+           hover:bg-grey-800 transition-colors duration-200;
+  }
+  .btn-outline-ink {
+    @apply inline-flex items-center gap-3 border border-ink text-ink px-8 py-3.5
+           text-[10px] font-sans font-semibold tracking-[0.25em] uppercase
+           hover:bg-ink hover:text-paper transition-colors duration-200;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 text-[10px] font-sans font-semibold
+           tracking-[0.25em] uppercase text-grey-400 hover:text-ink
+           transition-colors duration-200;
   }
 
-  .section-title-light {
-    @apply section-title text-offwhite;
-  }
+  /* ─── Grid dividers ─────────────────────────────── */
+  .divider-h { @apply w-full h-px bg-grey-200; }
+  .divider-v { @apply w-px h-full bg-grey-200; }
 
-  .btn-primary {
-    @apply bg-gold text-charcoal px-8 py-4 text-sm font-medium tracking-widest uppercase
-           hover:bg-gold-light transition-all duration-300 inline-block;
+  /* ─── Invert hover ──────────────────────────────── */
+  .invert-hover {
+    @apply transition-colors duration-300;
   }
-
-  .btn-outline {
-    @apply border border-gold text-gold px-8 py-4 text-sm font-medium tracking-widest uppercase
-           hover:bg-gold hover:text-charcoal transition-all duration-300 inline-block;
+  .invert-hover:hover {
+    @apply bg-ink text-paper;
   }
-
-  .gold-line {
-    @apply w-12 h-px bg-gold;
-  }
-
-  .card-hover {
-    @apply transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl;
-  }
+  .invert-hover:hover .invert-child { @apply text-paper; }
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  /* Clip image from bottom-right for editorial feel */
+  .clip-corner {
+    clip-path: polygon(0 0, 100% 0, 100% 92%, 95% 100%, 0 100%);
   }
-
-  .clip-diagonal {
-    clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
-  }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 }

@@ -2,287 +2,196 @@
 
 import { motion, useInView } from 'framer-motion'
 import { useRef, useState } from 'react'
-import { Send, Phone, Mail, MapPin, CheckCircle2 } from 'lucide-react'
+import { ArrowRight, Check } from 'lucide-react'
 
-const contactInfo = [
-  {
-    icon: Phone,
-    label: 'Telefon',
-    value: '+49 89 1234 5678',
-    href: 'tel:+4989123456789',
-  },
-  {
-    icon: Mail,
-    label: 'E-Mail',
-    value: 'info@maldonado-winz.de',
-    href: 'mailto:info@maldonado-winz.de',
-  },
-  {
-    icon: MapPin,
-    label: 'Adresse',
-    value: 'Maximilianstraße 12, 80539 München',
-    href: 'https://maps.google.com',
-  },
+const topics = ['Allgemeine Anfrage', 'Objekt kaufen', 'Objekt mieten', 'Immobilie bewerten', 'Off-Market']
+
+const info = [
+  { label: 'Telefon',  value: '+49 89 1234 5678' },
+  { label: 'E-Mail',   value: 'info@maldonado-winz.de' },
+  { label: 'Adresse',  value: 'Maximilianstraße 12\n80539 München' },
+  { label: 'Bürozeiten', value: 'Mo–Fr 09–18 Uhr\nSa 10–14 Uhr' },
 ]
 
 export default function ContactForm() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-80px' })
-  const [submitted, setSubmitted] = useState(false)
-  const [form, setForm] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    subject: 'Allgemeine Anfrage',
-    message: '',
-  })
+  const [done, setDone] = useState(false)
+  const [topic, setTopic] = useState(topics[0])
+  const [form, setForm] = useState({ name: '', email: '', phone: '', message: '' })
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    setSubmitted(true)
-  }
-
-  const inputClass = `w-full bg-transparent border-b border-warm-border text-charcoal
-                      placeholder-warm-gray/50 font-sans text-sm py-3 outline-none
-                      focus:border-gold transition-colors duration-300`
+  const fieldClass = `w-full bg-transparent border-b border-grey-200 focus:border-ink
+                      font-sans text-sm text-ink placeholder-grey-300 py-3 outline-none
+                      transition-colors duration-200`
 
   return (
-    <section id="kontakt" className="py-28 lg:py-36 bg-offwhite-dark relative">
-      {/* Top accent */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-warm-light" />
+    <section id="kontakt" className="bg-paper border-t border-grey-200" ref={ref}>
 
-      <div ref={ref} className="max-w-7xl mx-auto px-6 lg:px-10">
-
-        {/* Header */}
+      {/* ── Section header ───────────────────────── */}
+      <div className="max-w-screen-2xl mx-auto px-6 lg:px-12 py-16 border-b border-grey-200">
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-16"
+          transition={{ duration: 0.6 }}
+          className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-6"
         >
-          <div className="flex items-center gap-3 mb-4">
-            <div className="h-px w-10 bg-gold" />
-            <span className="section-label">Wir sind für Sie da</span>
+          <div>
+            <p className="label mb-4">Wir sind für Sie da</p>
+            <h2 className="display-lg text-ink">Kontakt</h2>
           </div>
-          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4">
-            <h2 className="section-title-dark">
-              Kontakt{' '}
-              <span className="text-gold italic">aufnehmen</span>
-            </h2>
-            <p className="text-warm-gray font-sans text-sm max-w-xs">
-              Wir antworten innerhalb von 24 Stunden — in der Regel deutlich schneller.
-            </p>
-          </div>
+          <p className="font-sans text-sm text-grey-400 max-w-xs leading-relaxed">
+            Antwort innerhalb von 24 Stunden — meist deutlich schneller.
+          </p>
         </motion.div>
+      </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16">
+      {/* ── Body ─────────────────────────────────── */}
+      <div className="max-w-screen-2xl mx-auto px-6 lg:px-12">
+        <div className="grid grid-cols-1 lg:grid-cols-5 divide-y lg:divide-y-0 lg:divide-x divide-grey-200">
 
-          {/* Left: Contact Info */}
+          {/* Left: info */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: -20 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="lg:col-span-2 space-y-8"
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="lg:col-span-2 py-14 pr-0 lg:pr-12 space-y-10"
           >
-            <div>
-              <h3 className="font-serif text-charcoal text-2xl font-semibold mb-3">
-                Persönliche Beratung
-              </h3>
-              <p className="text-warm-gray font-sans text-sm leading-relaxed">
-                Vereinbaren Sie ein unverbindliches Erstgespräch. Wir nehmen uns Zeit für Ihre
-                individuellen Anforderungen.
-              </p>
-            </div>
+            {info.map((item, i) => (
+              <div key={i}>
+                <p className="label mb-2">{item.label}</p>
+                <p className="font-sans text-sm text-ink whitespace-pre-line leading-relaxed">
+                  {item.value}
+                </p>
+              </div>
+            ))}
 
-            <div className="space-y-6">
-              {contactInfo.map((item, i) => {
-                const Icon = item.icon
-                return (
-                  <motion.a
-                    key={i}
-                    href={item.href}
-                    target={item.href.startsWith('http') ? '_blank' : undefined}
-                    rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                    initial={{ opacity: 0, y: 12 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
-                    className="flex items-start gap-4 group"
-                  >
-                    <div className="w-10 h-10 border border-warm-light flex items-center justify-center
-                                   group-hover:border-gold group-hover:bg-gold/5 transition-all duration-300
-                                   flex-shrink-0">
-                      <Icon size={15} className="text-warm-gray group-hover:text-gold transition-colors" />
-                    </div>
-                    <div>
-                      <p className="text-[10px] tracking-widest uppercase font-sans text-warm-gray/60 mb-0.5">
-                        {item.label}
-                      </p>
-                      <p className="font-sans text-sm text-charcoal group-hover:text-gold transition-colors">
-                        {item.value}
-                      </p>
-                    </div>
-                  </motion.a>
-                )
-              })}
-            </div>
-
-            {/* Office hours */}
-            <div className="p-6 border border-warm-light bg-white">
-              <p className="text-[10px] tracking-widest uppercase font-sans text-gold/70 mb-4">
-                Öffnungszeiten
-              </p>
-              <div className="space-y-2 text-sm font-sans">
-                <div className="flex justify-between text-charcoal/70">
-                  <span>Mo – Fr</span>
-                  <span className="text-charcoal font-medium">09:00 – 18:00</span>
-                </div>
-                <div className="flex justify-between text-charcoal/70">
-                  <span>Samstag</span>
-                  <span className="text-charcoal font-medium">10:00 – 14:00</span>
-                </div>
-                <div className="flex justify-between text-charcoal/50">
-                  <span>Sonntag</span>
-                  <span>nach Vereinbarung</span>
-                </div>
+            {/* Map placeholder */}
+            <div className="relative h-40 bg-grey-100 border border-grey-200 overflow-hidden">
+              <div
+                className="absolute inset-0 opacity-30"
+                style={{
+                  backgroundImage: `
+                    linear-gradient(rgba(10,10,10,0.15) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(10,10,10,0.15) 1px, transparent 1px)
+                  `,
+                  backgroundSize: '24px 24px',
+                }}
+              />
+              <div className="absolute inset-0 flex flex-col items-center justify-center gap-2">
+                <div className="w-2 h-2 bg-ink" />
+                <p className="label text-grey-400">Maximilianstraße 12</p>
               </div>
             </div>
           </motion.div>
 
-          {/* Right: Form */}
+          {/* Right: form */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 0, x: 20 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="lg:col-span-3"
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="lg:col-span-3 py-14 pl-0 lg:pl-12"
           >
-            {submitted ? (
+            {done ? (
               <motion.div
-                initial={{ opacity: 0, scale: 0.96 }}
+                initial={{ opacity: 0, scale: 0.97 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5 }}
-                className="flex flex-col items-center justify-center py-16 text-center"
+                className="flex flex-col items-start gap-6 py-10"
               >
-                <div className="w-16 h-16 border border-gold flex items-center justify-center mb-6">
-                  <CheckCircle2 size={28} className="text-gold" />
+                <div className="w-12 h-12 border border-grey-200 flex items-center justify-center">
+                  <Check size={18} strokeWidth={1.5} />
                 </div>
-                <h3 className="font-serif text-charcoal text-2xl font-semibold mb-3">
-                  Vielen Dank!
-                </h3>
-                <p className="text-warm-gray font-sans text-sm leading-relaxed max-w-sm">
-                  Ihre Nachricht ist bei uns eingegangen. Wir melden uns innerhalb
-                  von 24 Stunden bei Ihnen.
-                </p>
+                <div>
+                  <h3 className="font-display text-4xl text-ink uppercase mb-2">Danke.</h3>
+                  <p className="font-sans text-sm text-grey-400 leading-relaxed">
+                    Ihre Nachricht ist eingegangen — wir melden uns in Kürze.
+                  </p>
+                </div>
               </motion.div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-8">
-                {/* Subject selector */}
-                <div className="flex flex-wrap gap-2 pb-4 border-b border-warm-light">
-                  {['Allgemeine Anfrage', 'Objekt kaufen', 'Objekt vermieten', 'Bewertung'].map((s) => (
-                    <button
-                      key={s}
-                      type="button"
-                      onClick={() => setForm({ ...form, subject: s })}
-                      className={`px-4 py-1.5 text-xs font-sans tracking-wide transition-all duration-200
-                                  border ${
-                                    form.subject === s
-                                      ? 'bg-charcoal text-offwhite border-charcoal'
-                                      : 'text-warm-gray border-warm-light hover:border-charcoal/40'
-                                  }`}
-                    >
-                      {s}
-                    </button>
-                  ))}
+              <form
+                onSubmit={(e) => { e.preventDefault(); setDone(true) }}
+                className="space-y-10"
+              >
+                {/* Topic selector */}
+                <div>
+                  <p className="label mb-4">Ihr Anliegen</p>
+                  <div className="flex flex-wrap gap-2">
+                    {topics.map((t) => (
+                      <button
+                        key={t}
+                        type="button"
+                        onClick={() => setTopic(t)}
+                        className={`px-4 py-2 label transition-colors duration-200 border ${
+                          topic === t
+                            ? 'bg-ink text-paper border-ink'
+                            : 'text-grey-400 border-grey-200 hover:border-grey-400 hover:text-ink'
+                        }`}
+                      >
+                        {t}
+                      </button>
+                    ))}
+                  </div>
                 </div>
 
-                {/* Name + Email */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                {/* Fields */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
                   <div>
-                    <label className="block text-[10px] tracking-widest uppercase font-sans
-                                      text-warm-gray/60 mb-2">
-                      Name *
-                    </label>
+                    <label className="label block mb-2">Name *</label>
                     <input
-                      type="text"
-                      required
+                      type="text" required
                       value={form.name}
                       onChange={(e) => setForm({ ...form, name: e.target.value })}
-                      placeholder="Ihr vollständiger Name"
-                      className={inputClass}
+                      placeholder="Vollständiger Name"
+                      className={fieldClass}
                     />
                   </div>
                   <div>
-                    <label className="block text-[10px] tracking-widest uppercase font-sans
-                                      text-warm-gray/60 mb-2">
-                      E-Mail *
-                    </label>
+                    <label className="label block mb-2">E-Mail *</label>
                     <input
-                      type="email"
-                      required
+                      type="email" required
                       value={form.email}
                       onChange={(e) => setForm({ ...form, email: e.target.value })}
                       placeholder="ihre@email.de"
-                      className={inputClass}
+                      className={fieldClass}
                     />
                   </div>
                 </div>
 
-                {/* Phone */}
                 <div>
-                  <label className="block text-[10px] tracking-widest uppercase font-sans
-                                    text-warm-gray/60 mb-2">
-                    Telefon
-                  </label>
+                  <label className="label block mb-2">Telefon</label>
                   <input
                     type="tel"
                     value={form.phone}
                     onChange={(e) => setForm({ ...form, phone: e.target.value })}
                     placeholder="+49 ..."
-                    className={inputClass}
+                    className={fieldClass}
                   />
                 </div>
 
-                {/* Message */}
                 <div>
-                  <label className="block text-[10px] tracking-widest uppercase font-sans
-                                    text-warm-gray/60 mb-2">
-                    Nachricht *
-                  </label>
+                  <label className="label block mb-2">Nachricht *</label>
                   <textarea
                     required
                     value={form.message}
                     onChange={(e) => setForm({ ...form, message: e.target.value })}
                     placeholder="Beschreiben Sie Ihr Anliegen..."
-                    rows={5}
-                    className={`${inputClass} resize-none`}
+                    rows={4}
+                    className={`${fieldClass} resize-none`}
                   />
                 </div>
 
-                {/* Privacy + Submit */}
-                <div className="flex flex-col sm:flex-row items-start sm:items-center
-                                justify-between gap-4 pt-2">
-                  <p className="text-warm-gray/50 text-xs font-sans">
-                    Mit dem Absenden stimmen Sie unserer{' '}
-                    <a href="#" className="underline hover:text-gold transition-colors">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-2">
+                  <p className="font-sans text-[11px] text-grey-300">
+                    Mit Absenden stimmen Sie der{' '}
+                    <a href="#" className="underline hover:text-ink transition-colors">
                       Datenschutzerklärung
                     </a>{' '}
                     zu.
                   </p>
-                  <motion.button
-                    type="submit"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="flex items-center gap-3 bg-charcoal text-offwhite
-                               px-8 py-4 text-xs font-sans font-semibold tracking-widest uppercase
-                               hover:bg-gold hover:text-charcoal transition-all duration-300
-                               group flex-shrink-0"
-                  >
+                  <button type="submit" className="btn-ink group">
                     Nachricht senden
-                    <Send
-                      size={13}
-                      className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5
-                                 transition-transform duration-300"
-                    />
-                  </motion.button>
+                    <ArrowRight size={12} className="group-hover:translate-x-0.5 transition-transform" />
+                  </button>
                 </div>
               </form>
             )}

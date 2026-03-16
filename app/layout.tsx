@@ -1,13 +1,13 @@
 import type { Metadata } from 'next'
-import { Playfair_Display, Inter } from 'next/font/google'
+import { Bebas_Neue, Inter } from 'next/font/google'
 import './globals.css'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 
-const playfair = Playfair_Display({
+const bebasNeue = Bebas_Neue({
   subsets: ['latin'],
-  variable: '--font-playfair',
-  weight: ['400', '500', '600', '700', '800'],
+  variable: '--font-bebas',
+  weight: '400',
   display: 'swap',
 })
 
@@ -19,19 +19,15 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'Maldonado-Winz Immobilien | Premium Immobilienmakler',
+  title: 'Maldonado-Winz — Premium Immobilien München',
   description:
-    'Ihr exklusiver Partner für Premium-Immobilien. Wir verkaufen, vermieten und bewerten Ihre Immobilie mit höchster Sorgfalt und Professionalität.',
-  keywords: ['Immobilien', 'Makler', 'Premium', 'Luxus', 'Kaufen', 'Mieten', 'Bewertung'],
+    'Exklusiver Partner für Premium-Immobilien in München. Vermieten, Verkaufen, Bewerten — mit höchster Sorgfalt.',
+  keywords: ['Immobilien', 'Makler', 'Premium', 'München', 'Kaufen', 'Mieten'],
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="de" className={`${playfair.variable} ${inter.variable}`}>
+    <html lang="de" className={`${bebasNeue.variable} ${inter.variable}`}>
       <body>
         <Navbar />
         <main>{children}</main>

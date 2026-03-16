@@ -2,42 +2,42 @@
 
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
-import { Building2, TrendingUp, BarChart3, ArrowRight } from 'lucide-react'
+import { ArrowUpRight } from 'lucide-react'
 import Link from 'next/link'
 
 const services = [
   {
-    icon: Building2,
-    number: '01',
+    num:  '01',
     title: 'Vermieten',
-    subtitle: 'Ihr Objekt in besten Händen',
-    description:
-      'Wir finden den idealen Mieter für Ihre Immobilie — diskret, schnell und zu marktgerechten Konditionen. Von der Objektaufnahme bis zur Schlüsselübergabe.',
-    features: ['Professionelles Home Staging', 'Bonitätsprüfung', 'Rechtssichere Mietverträge'],
+    tag: 'Rental Management',
+    desc: 'Wir finden den idealen Mieter — durch gezielte Vermarktung, Bonitätsprüfung und rechtssichere Vertragsgestaltung.',
+    stats: [
+      { label: 'Ø Vermarktungszeit', value: '18 Tage' },
+      { label: 'Vermietungsquote',   value: '99%' },
+    ],
     href: '#leistungen',
-    accent: 'Bis zu 30% schneller vermietet',
   },
   {
-    icon: TrendingUp,
-    number: '02',
+    num:  '02',
     title: 'Verkaufen',
-    subtitle: 'Maximaler Erlös garantiert',
-    description:
-      'Mit unserem exklusiven Netzwerk und datengetriebenen Preisstrategie erzielen wir für Ihre Immobilie den bestmöglichen Verkaufspreis am Markt.',
-    features: ['Premium-Vermarktung', '3D-Visualisierungen', 'Off-Market Zugänge'],
+    tag: 'Sales & Transaction',
+    desc: 'Mit datengestützter Preisstrategie, Premium-Marketing und einem exklusiven Käufernetzwerk erzielen wir Spitzenpreise.',
+    stats: [
+      { label: 'Über Marktwert erzielt', value: 'Ø +8%' },
+      { label: 'Off-Market-Anteil',      value: '41%' },
+    ],
     href: '#leistungen',
-    accent: 'Ø 8% über Marktwert erzielt',
   },
   {
-    icon: BarChart3,
-    number: '03',
+    num:  '03',
     title: 'Bewerten',
-    subtitle: 'Fundiert & marktgerecht',
-    description:
-      'Eine präzise Immobilienbewertung ist die Basis für jede erfolgreiche Transaktion. Unsere zertifizierten Experten liefern fundierte Gutachten.',
-    features: ['Zertifizierte Gutachter', 'Marktanalyse inklusive', 'Kostenlos & unverbindlich'],
+    tag: 'Valuation & Advisory',
+    desc: 'Präzise Gutachten auf Basis aktueller Marktdaten, Lageanalyse und Vergleichsobjekten — kostenlos und unverbindlich.',
+    stats: [
+      { label: 'Gutachten ausgestellt', value: '1.200+' },
+      { label: 'Erstbewertung',         value: 'Kostenlos' },
+    ],
     href: '#kontakt',
-    accent: 'Kostenlose Erstbewertung',
   },
 ]
 
@@ -46,117 +46,102 @@ export default function Services() {
   const isInView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
-    <section id="leistungen" className="py-28 lg:py-36 bg-charcoal relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
-      <div className="absolute top-1/2 -translate-y-1/2 -left-48 w-96 h-96 rounded-full
-                      bg-gold/4 blur-3xl pointer-events-none" />
+    <section id="leistungen" ref={ref} className="bg-paper border-t border-grey-200">
 
-      <div ref={ref} className="max-w-7xl mx-auto px-6 lg:px-10">
-
-        {/* Section Header */}
+      {/* ── Section header ───────────────────────── */}
+      <div className="max-w-screen-2xl mx-auto px-6 lg:px-12 py-16 border-b border-grey-200
+                      flex flex-col lg:flex-row items-start lg:items-end justify-between gap-6">
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-16 lg:mb-20"
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div className="flex items-center gap-3 mb-4">
-            <div className="h-px w-10 bg-gold" />
-            <span className="section-label">Was wir für Sie tun</span>
-          </div>
-          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
-            <h2 className="section-title-light max-w-lg">
-              Unsere{' '}
-              <span className="text-gold italic">Leistungen</span>
-            </h2>
-            <p className="text-offwhite/45 font-sans text-base leading-relaxed max-w-xs lg:max-w-sm">
-              Maßgeschneiderte Lösungen für jeden Aspekt Ihrer Immobilientransaktion.
-            </p>
-          </div>
+          <p className="label mb-4">Was wir für Sie tun</p>
+          <h2 className="display-lg text-ink">Leistungen</h2>
         </motion.div>
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ delay: 0.2, duration: 0.6 }}
+          className="font-sans text-sm text-grey-400 max-w-xs leading-relaxed"
+        >
+          Drei Kernleistungen — vollständig auf Ihre Immobilie abgestimmt.
+        </motion.p>
+      </div>
 
-        {/* Service Cards */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-px bg-warm-border">
-          {services.map((service, i) => {
-            const Icon = service.icon
-            return (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{
-                  duration: 0.7,
-                  delay: i * 0.15,
-                  ease: [0.22, 1, 0.36, 1],
-                }}
+      {/* ── Cards grid ───────────────────────────── */}
+      <div className="max-w-screen-2xl mx-auto px-6 lg:px-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 divide-y lg:divide-y-0 lg:divide-x divide-grey-200">
+          {services.map((s, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: i * 0.12, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <Link
+                href={s.href}
+                className="group block py-14 px-8 lg:px-10 hover:bg-ink transition-colors
+                           duration-400 relative overflow-hidden"
               >
-                <div
-                  className="group bg-charcoal-light p-8 lg:p-10 h-full flex flex-col
-                             hover:bg-charcoal-mid transition-all duration-500 cursor-default"
-                >
-                  {/* Number + Icon */}
-                  <div className="flex items-start justify-between mb-8">
-                    <span className="font-serif text-5xl font-bold text-warm-border
-                                     group-hover:text-gold/20 transition-colors duration-500">
-                      {service.number}
-                    </span>
-                    <div className="w-14 h-14 border border-warm-border group-hover:border-gold/40
-                                   flex items-center justify-center transition-all duration-500
-                                   group-hover:bg-gold/8">
-                      <Icon
-                        size={22}
-                        className="text-warm-gray group-hover:text-gold transition-colors duration-500"
-                      />
-                    </div>
-                  </div>
+                {/* Background number */}
+                <div className="absolute -bottom-8 -right-4 font-display text-[10rem] leading-none
+                                text-grey-100 group-hover:text-grey-800 transition-colors duration-400
+                                pointer-events-none select-none">
+                  {s.num}
+                </div>
 
-                  {/* Accent tag */}
-                  <div className="mb-5">
-                    <span className="inline-block text-[10px] tracking-widest uppercase font-sans
-                                     text-gold/70 border border-gold/25 px-3 py-1">
-                      {service.accent}
-                    </span>
-                  </div>
-
-                  {/* Content */}
-                  <h3 className="font-serif text-3xl text-offwhite font-semibold mb-1">
-                    {service.title}
-                  </h3>
-                  <p className="text-gold text-sm font-sans mb-5">{service.subtitle}</p>
-                  <p className="text-offwhite/45 font-sans text-sm leading-relaxed mb-8 flex-1">
-                    {service.description}
+                <div className="relative z-10">
+                  {/* Tag */}
+                  <p className="label group-hover:text-grey-400 mb-8 transition-colors duration-300">
+                    {s.tag}
                   </p>
 
-                  {/* Features */}
-                  <ul className="space-y-2.5 mb-8">
-                    {service.features.map((feature, j) => (
-                      <li key={j} className="flex items-center gap-3 text-sm text-offwhite/55 font-sans">
-                        <span className="w-1.5 h-1.5 bg-gold/60 flex-shrink-0" />
-                        {feature}
-                      </li>
+                  {/* Title */}
+                  <h3 className="font-display text-[clamp(3rem,5vw,5.5rem)] leading-none uppercase
+                                 text-ink group-hover:text-paper transition-colors duration-300 mb-6">
+                    {s.title}
+                  </h3>
+
+                  {/* Divider */}
+                  <div className="w-8 h-px bg-grey-200 group-hover:bg-grey-600 mb-6 transition-colors duration-300" />
+
+                  {/* Description */}
+                  <p className="font-sans text-sm text-grey-500 group-hover:text-grey-300
+                                leading-relaxed mb-10 transition-colors duration-300 max-w-xs">
+                    {s.desc}
+                  </p>
+
+                  {/* Stats */}
+                  <div className="grid grid-cols-2 gap-6 mb-10">
+                    {s.stats.map((st, j) => (
+                      <div key={j}>
+                        <p className="font-display text-3xl text-ink group-hover:text-paper
+                                       transition-colors duration-300 leading-none mb-1">
+                          {st.value}
+                        </p>
+                        <p className="label group-hover:text-grey-400 transition-colors duration-300">
+                          {st.label}
+                        </p>
+                      </div>
                     ))}
-                  </ul>
+                  </div>
 
                   {/* CTA */}
-                  <Link
-                    href={service.href}
-                    className="flex items-center gap-2 text-sm text-gold/70 hover:text-gold
-                               font-sans font-medium tracking-wide group/link transition-colors duration-200"
-                  >
+                  <div className="flex items-center gap-2 label text-grey-400
+                                  group-hover:text-grey-300 transition-colors duration-300">
                     Mehr erfahren
-                    <ArrowRight
-                      size={14}
-                      className="group-hover/link:translate-x-1.5 transition-transform duration-300"
-                    />
-                  </Link>
+                    <ArrowUpRight size={12} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  </div>
                 </div>
-              </motion.div>
-            )
-          })}
+              </Link>
+            </motion.div>
+          ))}
         </div>
       </div>
+
+      {/* ── Bottom border ────────────────────────── */}
+      <div className="border-t border-grey-200" />
     </section>
   )
 }
