@@ -1,80 +1,84 @@
 'use client'
 
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { Search, ArrowRight } from 'lucide-react'
+import { ArrowRight, MapPin } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
 export default function Hero() {
   const ref = useRef<HTMLElement>(null)
-  const [deal, setDeal] = useState<'Kaufen' | 'Mieten'>('Kaufen')
-  const [location, setLocation] = useState('')
 
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
-  const imgY   = useTransform(scrollYProgress, [0, 1], ['0%', '18%'])
-  const textY  = useTransform(scrollYProgress, [0, 1], ['0%', '10%'])
+  const imgY    = useTransform(scrollYProgress, [0, 1], ['0%', '18%'])
+  const textY   = useTransform(scrollYProgress, [0, 1], ['0%', '10%'])
   const fadeOut = useTransform(scrollYProgress, [0, 0.55], [1, 0])
 
   return (
-    <section ref={ref} className="relative h-screen min-h-[700px] max-h-[1080px] overflow-hidden bg-ink flex flex-col">
+    <section ref={ref} className="relative h-screen min-h-[700px] max-h-[1100px] overflow-hidden bg-navy flex flex-col">
 
       {/* ── Background image (parallax) ───────────── */}
       <motion.div className="absolute inset-0" style={{ y: imgY }}>
         <Image
-          src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=2000&q=90"
-          alt="Architektur"
+          src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=2000&q=90"
+          alt="Hochwertige Wohnimmobilie"
           fill
           priority
-          className="object-cover object-center grayscale brightness-50"
+          className="object-cover object-center brightness-[0.35]"
           sizes="100vw"
         />
       </motion.div>
 
-      {/* ── Vertical label – right edge ──────────────*/}
+      {/* ── Subtle gradient overlay ─────────────── */}
+      <div className="absolute inset-0 bg-gradient-to-b from-navy/30 via-transparent to-navy/70 pointer-events-none" />
+
+      {/* ── Gold accent line – right ─────────────── */}
       <div className="absolute right-8 top-1/2 -translate-y-1/2 z-10 hidden lg:flex flex-col items-center gap-3">
-        <span className="label text-white/30 [writing-mode:vertical-lr] tracking-[0.35em]">
-          München · Deutschland · Est. 2008
+        <span className="font-sans text-[10px] font-medium uppercase tracking-[0.35em] text-white/30 [writing-mode:vertical-lr]">
+          München · Bayern · Deutschland
         </span>
-        <div className="w-px h-16 bg-white/15" />
+        <div className="w-px h-16 bg-gold/40" />
       </div>
 
       {/* ── Main content ─────────────────────────── */}
       <motion.div
         style={{ y: textY, opacity: fadeOut }}
-        className="relative z-10 flex-1 flex flex-col justify-end pb-24 px-6 lg:px-12 max-w-screen-2xl mx-auto w-full"
+        className="relative z-10 flex-1 flex flex-col justify-end pb-10 px-5 lg:px-12 max-w-screen-2xl mx-auto w-full"
       >
-        {/* Issue tag */}
-        <motion.p
+        {/* Eyebrow */}
+        <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.7 }}
-          className="label text-white/40 mb-6"
+          className="flex items-center gap-3 mb-8"
         >
-          Collection 2024 — Premium Portfolio
-        </motion.p>
+          <div className="w-8 h-px bg-gold" />
+          <span className="font-sans text-[11px] font-medium uppercase tracking-[0.25em] text-gold">
+            Boutique Immobilienmakler · München
+          </span>
+        </motion.div>
 
         {/* Headline */}
-        <div className="overflow-hidden mb-2">
+        <div className="overflow-hidden mb-1">
           <motion.h1
             initial={{ y: '100%' }}
             animate={{ y: 0 }}
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            className="font-display text-paper leading-none uppercase
-                       text-[clamp(4.5rem,13vw,13rem)]"
+            className="font-display font-light text-cream leading-[0.92]
+                       text-[clamp(4rem,11vw,10.5rem)]"
           >
-            Premium
+            Werte verstehen.
           </motion.h1>
         </div>
-        <div className="overflow-hidden mb-8">
+        <div className="overflow-hidden mb-10">
           <motion.h1
             initial={{ y: '100%' }}
             animate={{ y: 0 }}
             transition={{ delay: 0.08, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            className="font-display text-paper leading-none uppercase
-                       text-[clamp(4.5rem,13vw,13rem)]"
+            className="font-display font-light text-cream/60 leading-[0.92]
+                       text-[clamp(4rem,11vw,10.5rem)]"
           >
-            Immobilien
+            Immobilien gestalten.
           </motion.h1>
         </div>
 
@@ -83,88 +87,56 @@ export default function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.7 }}
-          className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6"
+          className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 lg:gap-12"
         >
-          <p className="font-sans text-white/50 text-sm font-light max-w-xs leading-relaxed">
-            Handverlesene Objekte für anspruchsvolle Käufer.<br />
-            Diskret, professionell, exklusiv.
-          </p>
-          <Link href="#angebote" className="btn-outline-ink border-white text-white hover:bg-white hover:text-ink group">
-            Objekte ansehen
-            <ArrowRight size={13} className="group-hover:translate-x-1 transition-transform" />
-          </Link>
+          <div className="max-w-sm">
+            <p className="font-sans text-cream/70 text-base font-light leading-relaxed mb-2">
+              Diskrete Vermarktung. Tiefgreifende Beratung. Maximaler Erlös.
+            </p>
+            <div className="flex items-center gap-2 font-sans text-[11px] text-white/40 uppercase tracking-widest">
+              <MapPin size={11} />
+              Spezialisiert auf Premium-Wohnimmobilien in München
+            </div>
+          </div>
+
+          {/* CTA buttons */}
+          <div className="flex flex-col sm:flex-row items-start gap-3 w-full sm:w-auto">
+            <Link href="#bewertung" className="btn-gold group w-full sm:w-auto justify-center">
+              Immobilie bewerten
+              <ArrowRight size={13} className="group-hover:translate-x-0.5 transition-transform" />
+            </Link>
+            <Link href="#kontakt" className="btn-outline-light group w-full sm:w-auto justify-center">
+              Beratungsgespräch
+              <ArrowRight size={13} className="group-hover:translate-x-0.5 transition-transform" />
+            </Link>
+          </div>
         </motion.div>
       </motion.div>
 
-      {/* ── Floating search bar ───────────────────── */}
+      {/* ── Trust bar ────────────────────────────── */}
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.8, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-        className="relative z-10 bg-paper border-t border-grey-200"
+        transition={{ delay: 0.9, duration: 0.6 }}
+        className="relative z-10 bg-cream/95 backdrop-blur-sm border-t border-grey-200"
       >
-        <div className="max-w-screen-2xl mx-auto px-6 lg:px-12">
-          <div className="flex flex-col md:flex-row items-stretch">
-
-            {/* Deal type toggle */}
-            <div className="flex border-r border-grey-200">
-              {(['Kaufen', 'Mieten'] as const).map((d) => (
-                <button
-                  key={d}
-                  onClick={() => setDeal(d)}
-                  className={`px-7 py-5 label transition-colors duration-200 ${
-                    deal === d
-                      ? 'bg-ink text-paper'
-                      : 'text-grey-400 hover:text-ink'
-                  }`}
-                >
-                  {d}
-                </button>
-              ))}
-            </div>
-
-            {/* Location input */}
-            <div className="flex-1 flex items-center gap-3 px-6 py-4 border-r border-grey-200">
-              <input
-                type="text"
-                value={location}
-                onChange={(e) => setLocation(e.target.value)}
-                placeholder="Ort, Stadtteil oder PLZ"
-                className="w-full bg-transparent font-sans text-sm text-ink placeholder-grey-300
-                           outline-none"
-              />
-            </div>
-
-            {/* Type select */}
-            <div className="flex items-center px-6 py-4 border-r border-grey-200">
-              <select className="bg-transparent font-sans text-sm text-grey-400 outline-none cursor-pointer
-                                 hover:text-ink transition-colors appearance-none pr-3">
-                <option>Alle Typen</option>
-                <option>Wohnung</option>
-                <option>Haus</option>
-                <option>Villa</option>
-                <option>Penthouse</option>
-              </select>
-            </div>
-
-            {/* Price select */}
-            <div className="flex items-center px-6 py-4 border-r border-grey-200">
-              <select className="bg-transparent font-sans text-sm text-grey-400 outline-none cursor-pointer
-                                 hover:text-ink transition-colors appearance-none pr-3">
-                <option>Alle Preise</option>
-                <option>bis 500T €</option>
-                <option>500T – 1 Mio €</option>
-                <option>1 – 2 Mio €</option>
-                <option>ab 2 Mio €</option>
-              </select>
-            </div>
-
-            {/* Submit */}
-            <button className="flex items-center justify-center gap-2.5 bg-ink text-paper
-                               px-10 py-5 label hover:bg-grey-800 transition-colors group">
-              <Search size={13} />
-              Suchen
-            </button>
+        <div className="max-w-screen-2xl mx-auto px-5 lg:px-12">
+          <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-grey-200">
+            {[
+              { value: '15+',   label: 'Jahre Erfahrung' },
+              { value: '500+',  label: 'Objekte vermittelt' },
+              { value: '98%',   label: 'Kundenzufriedenheit' },
+              { value: '4,9',   label: 'Google-Bewertung' },
+            ].map((item) => (
+              <div key={item.label} className="px-6 py-5 text-center">
+                <p className="font-display text-2xl font-medium text-navy leading-none mb-1">
+                  {item.value}
+                </p>
+                <p className="font-sans text-[10px] uppercase tracking-widest text-grey-400">
+                  {item.label}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </motion.div>

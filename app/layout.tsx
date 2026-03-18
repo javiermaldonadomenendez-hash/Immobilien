@@ -1,13 +1,14 @@
 import type { Metadata } from 'next'
-import { Bebas_Neue, Inter } from 'next/font/google'
+import { Cormorant_Garamond, Inter } from 'next/font/google'
 import './globals.css'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
+import MobileStickyBar from '@/components/MobileStickyBar'
 
-const bebasNeue = Bebas_Neue({
+const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
-  variable: '--font-bebas',
-  weight: '400',
+  variable: '--font-cormorant',
+  weight: ['300', '400', '500', '600', '700'],
   display: 'swap',
 })
 
@@ -19,19 +20,23 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'Maldonado-Winz — Premium Immobilien München',
+  title: 'Maldonado Winz Immobilien — Premium Immobilienmakler München',
   description:
-    'Exklusiver Partner für Premium-Immobilien in München. Vermieten, Verkaufen, Bewerten — mit höchster Sorgfalt.',
-  keywords: ['Immobilien', 'Makler', 'Premium', 'München', 'Kaufen', 'Mieten'],
+    'Boutique-Makler für hochwertige Wohnimmobilien in München. Diskrete Vermarktung, tiefgreifende Beratung, maximaler Verkaufserlös. Jetzt Immobilie kostenlos bewerten.',
+  keywords: [
+    'Immobilienmakler München', 'Premium Immobilien', 'Immobilie verkaufen München',
+    'Immobilienbewertung', 'Off-Market Immobilien', 'Maldonado Winz',
+  ],
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="de" className={`${bebasNeue.variable} ${inter.variable}`}>
+    <html lang="de" className={`${cormorant.variable} ${inter.variable}`}>
       <body>
         <Navbar />
         <main>{children}</main>
         <Footer />
+        <MobileStickyBar />
       </body>
     </html>
   )

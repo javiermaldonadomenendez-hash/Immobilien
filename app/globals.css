@@ -10,83 +10,118 @@
   }
 
   body {
-    @apply bg-paper text-ink font-sans;
-    font-size: 14px;
+    @apply bg-cream text-navy font-sans;
+    font-size: 16px;
   }
 
   * { box-sizing: border-box; }
 
   ::selection {
-    background-color: #0A0A0A;
-    color: #FFFFFF;
+    background-color: #1C2B4A;
+    color: #FAF8F4;
   }
 
-  /* Monochrome scrollbar */
+  /* Premium scrollbar */
   ::-webkit-scrollbar       { width: 4px; }
-  ::-webkit-scrollbar-track { background: #FAFAFA; }
-  ::-webkit-scrollbar-thumb { background: #0A0A0A; }
+  ::-webkit-scrollbar-track { background: #FAF8F4; }
+  ::-webkit-scrollbar-thumb { background: #B8955A; }
 
   /* Dark select options */
-  select option { background: #0A0A0A; color: #FFFFFF; }
+  select option { background: #1C2B4A; color: #FAF8F4; }
 }
 
 @layer components {
 
   /* ─── Labels ────────────────────────────────────── */
   .label {
-    @apply font-sans text-[10px] font-medium uppercase tracking-[0.3em] text-grey-400;
+    @apply font-sans text-[11px] font-medium uppercase tracking-[0.25em] text-grey-400;
   }
-  .label-dark {
-    @apply label text-grey-600;
+  .label-light {
+    @apply label text-grey-300;
+  }
+  .label-gold {
+    @apply label text-gold;
   }
 
-  /* ─── Section headlines ─────────────────────────── */
+  /* ─── Section headlines (Cormorant Garamond serif) ── */
   .display-xl {
-    @apply font-display text-[clamp(5rem,12vw,11rem)] leading-none uppercase tracking-tight;
+    @apply font-display text-[clamp(5rem,12vw,11rem)] leading-[0.95] font-light;
   }
   .display-lg {
-    @apply font-display text-[clamp(3.5rem,8vw,7rem)] leading-none uppercase tracking-tight;
+    @apply font-display text-[clamp(3.5rem,8vw,7rem)] leading-[0.95] font-light;
   }
   .display-md {
-    @apply font-display text-[clamp(2.5rem,5vw,4.5rem)] leading-none uppercase tracking-tight;
+    @apply font-display text-[clamp(2.5rem,5vw,4.5rem)] leading-[1.05] font-light;
+  }
+  .display-sm {
+    @apply font-display text-[clamp(2rem,4vw,3.5rem)] leading-[1.1] font-light;
   }
 
-  /* ─── Buttons ───────────────────────────────────── */
-  .btn-ink {
-    @apply inline-flex items-center gap-3 bg-ink text-paper px-8 py-3.5
-           text-[10px] font-sans font-semibold tracking-[0.25em] uppercase
-           hover:bg-grey-800 transition-colors duration-200;
+  /* ─── Body text ─────────────────────────────────── */
+  .body-lg {
+    @apply font-sans text-base text-grey-600 leading-relaxed;
   }
-  .btn-outline-ink {
-    @apply inline-flex items-center gap-3 border border-ink text-ink px-8 py-3.5
-           text-[10px] font-sans font-semibold tracking-[0.25em] uppercase
-           hover:bg-ink hover:text-paper transition-colors duration-200;
+  .body-md {
+    @apply font-sans text-[15px] text-grey-500 leading-relaxed;
+  }
+  .body-sm {
+    @apply font-sans text-sm text-grey-400 leading-relaxed;
+  }
+
+  /* ─── Buttons (Navy primary) ─────────────────────── */
+  .btn-primary {
+    @apply inline-flex items-center gap-3 bg-navy text-cream px-8 py-4
+           font-sans text-[11px] font-semibold tracking-[0.2em] uppercase
+           hover:bg-navy-800 transition-colors duration-200 min-h-[48px];
+  }
+  .btn-gold {
+    @apply inline-flex items-center gap-3 bg-gold text-cream px-8 py-4
+           font-sans text-[11px] font-semibold tracking-[0.2em] uppercase
+           hover:bg-gold-dark transition-colors duration-200 min-h-[48px];
+  }
+  .btn-outline {
+    @apply inline-flex items-center gap-3 border border-navy text-navy px-8 py-4
+           font-sans text-[11px] font-semibold tracking-[0.2em] uppercase
+           hover:bg-navy hover:text-cream transition-colors duration-200 min-h-[48px];
+  }
+  .btn-outline-light {
+    @apply inline-flex items-center gap-3 border border-cream/40 text-cream px-8 py-4
+           font-sans text-[11px] font-semibold tracking-[0.2em] uppercase
+           hover:bg-cream hover:text-navy transition-colors duration-200 min-h-[48px];
   }
   .btn-ghost {
-    @apply inline-flex items-center gap-2 text-[10px] font-sans font-semibold
-           tracking-[0.25em] uppercase text-grey-400 hover:text-ink
+    @apply inline-flex items-center gap-2 font-sans text-[11px] font-semibold
+           tracking-[0.2em] uppercase text-grey-400 hover:text-navy
            transition-colors duration-200;
+  }
+
+  /* ─── Gold accent line ───────────────────────────── */
+  .gold-line {
+    @apply w-12 h-0.5 bg-gold;
   }
 
   /* ─── Grid dividers ─────────────────────────────── */
   .divider-h { @apply w-full h-px bg-grey-200; }
   .divider-v { @apply w-px h-full bg-grey-200; }
 
-  /* ─── Invert hover ──────────────────────────────── */
-  .invert-hover {
-    @apply transition-colors duration-300;
+  /* ─── Section padding ───────────────────────────── */
+  .section-pad {
+    @apply py-20 lg:py-28;
   }
-  .invert-hover:hover {
-    @apply bg-ink text-paper;
+  .section-pad-sm {
+    @apply py-14 lg:py-20;
   }
-  .invert-hover:hover .invert-child { @apply text-paper; }
 }
 
 @layer utilities {
-  /* Clip image from bottom-right for editorial feel */
   .clip-corner {
     clip-path: polygon(0 0, 100% 0, 100% 92%, 95% 100%, 0 100%);
   }
   .no-scrollbar::-webkit-scrollbar { display: none; }
   .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+  /* Mobile safe area bottom padding (for sticky bar) */
+  .pb-safe {
+    padding-bottom: calc(4rem + env(safe-area-inset-bottom));
+  }
 }

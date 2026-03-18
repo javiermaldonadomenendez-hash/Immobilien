@@ -2,23 +2,23 @@ import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
 
 const col1 = [
-  { label: 'Vermieten',        href: '#leistungen' },
-  { label: 'Verkaufen',        href: '#leistungen' },
-  { label: 'Bewerten',         href: '#kontakt'    },
-  { label: 'Off-Market',       href: '#kontakt'    },
-  { label: 'Investmentberatung', href: '#kontakt'  },
+  { label: 'Immobilie verkaufen',   href: '#leistungen' },
+  { label: 'Immobilie vermieten',   href: '#leistungen' },
+  { label: 'Diskrete Vermarktung',  href: '#leistungen' },
+  { label: 'Immobilienbewertung',   href: '#bewertung'  },
+  { label: 'Suchauftrag anlegen',   href: '#angebote'   },
 ]
 const col2 = [
-  { label: 'Über uns',   href: '#ueber-uns' },
-  { label: 'Team',       href: '#ueber-uns' },
-  { label: 'Karriere',   href: '#kontakt'   },
-  { label: 'Presse',     href: '#kontakt'   },
+  { label: 'Über uns',        href: '#ueber-uns' },
+  { label: 'Team',            href: '#ueber-uns' },
+  { label: 'Markt & Wissen',  href: '#markt'     },
+  { label: 'FAQ',             href: '#faq'        },
+  { label: 'Kontakt',         href: '#kontakt'    },
 ]
 const col3 = [
-  { label: 'Impressum',        href: '#' },
-  { label: 'Datenschutz',      href: '#' },
-  { label: 'AGB',              href: '#' },
-  { label: 'Widerrufsrecht',   href: '#' },
+  { label: 'Impressum',      href: '#' },
+  { label: 'Datenschutz',    href: '#' },
+  { label: 'AGB',            href: '#' },
 ]
 const socials = [
   { label: 'Instagram', href: '#' },
@@ -28,27 +28,27 @@ const socials = [
 
 export default function Footer() {
   return (
-    <footer className="bg-ink text-paper">
+    <footer className="bg-navy text-cream">
 
       {/* ── CTA strip ──────────────────────────── */}
-      <div className="border-b border-grey-800">
-        <div className="max-w-screen-2xl mx-auto px-6 lg:px-12 py-20
+      <div className="border-b border-navy-800">
+        <div className="max-w-screen-2xl mx-auto px-5 lg:px-12 py-20
                         flex flex-col lg:flex-row items-start lg:items-end justify-between gap-10">
           <div>
-            <p className="label text-grey-600 mb-6">Bereit für den nächsten Schritt?</p>
-            <h3 className="font-display text-[clamp(3rem,7vw,7rem)] leading-none uppercase text-paper">
+            <p className="label text-gold mb-6">Bereit für den nächsten Schritt?</p>
+            <h3 className="font-display text-[clamp(3rem,7vw,7rem)] font-light leading-[0.92] text-cream">
               Immobilie<br />
-              <span className="text-grey-600">kostenlos</span><br />
-              Bewerten
+              <span className="text-gold">kostenlos</span><br />
+              bewerten
             </h3>
           </div>
           <Link
-            href="#kontakt"
-            className="group flex items-center gap-3 border border-grey-600 px-8 py-4
-                       label text-grey-400 hover:border-paper hover:text-paper
-                       transition-colors duration-300 flex-shrink-0"
+            href="#bewertung"
+            className="group flex items-center gap-3 bg-gold px-8 py-4
+                       label text-cream hover:bg-gold-dark
+                       transition-colors duration-300 flex-shrink-0 min-h-[48px]"
           >
-            Jetzt anfragen
+            Wert ermitteln
             <ArrowUpRight
               size={13}
               className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
@@ -58,17 +58,18 @@ export default function Footer() {
       </div>
 
       {/* ── Main columns ───────────────────────── */}
-      <div className="max-w-screen-2xl mx-auto px-6 lg:px-12 py-16">
-        <div className="grid grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-0 lg:divide-x lg:divide-grey-800">
+      <div className="max-w-screen-2xl mx-auto px-5 lg:px-12 py-16">
+        <div className="grid grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-0 lg:divide-x lg:divide-navy-800">
 
           {/* Brand */}
           <div className="col-span-2 lg:col-span-2 lg:pr-12">
-            <p className="font-display text-3xl tracking-wider text-paper mb-4">
-              MW IMMOBILIEN
+            <p className="font-display text-3xl font-light tracking-wide text-cream mb-2">
+              Maldonado Winz
             </p>
-            <p className="font-sans text-xs text-grey-600 leading-relaxed max-w-xs mb-8">
-              Ihr exklusiver Partner für Premium-Immobilien in München
-              und der umliegenden Region. Seit 2008.
+            <p className="label text-gold mb-4">Immobilien</p>
+            <p className="font-sans text-sm text-cream/40 leading-relaxed max-w-xs mb-8">
+              Boutique-Makler für hochwertige Wohnimmobilien in München und der umliegenden Region.
+              Diskret. Kompetent. Auf Augenhöhe.
             </p>
             {/* Socials */}
             <div className="flex gap-6">
@@ -76,15 +77,14 @@ export default function Footer() {
                 <a
                   key={s.label}
                   href={s.href}
-                  className="label text-grey-600 hover:text-paper transition-colors duration-200
+                  className="label text-cream/30 hover:text-gold transition-colors duration-200
                              flex items-center gap-1 group"
                 >
                   {s.label}
                   <ArrowUpRight
                     size={9}
-                    className="opacity-0 group-hover:opacity-100 transition-opacity
-                               group-hover:translate-x-0.5 group-hover:-translate-y-0.5
-                               transition-transform"
+                    className="opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5
+                               group-hover:-translate-y-0.5 transition-all"
                   />
                 </a>
               ))}
@@ -98,13 +98,13 @@ export default function Footer() {
             { title: 'Rechtliches',  links: col3 },
           ].map((col) => (
             <div key={col.title} className="lg:px-10">
-              <p className="label text-grey-600 mb-6">{col.title}</p>
+              <p className="label text-gold mb-6">{col.title}</p>
               <ul className="space-y-3">
                 {col.links.map((l) => (
                   <li key={l.label}>
                     <Link
                       href={l.href}
-                      className="font-sans text-xs text-grey-500 hover:text-paper
+                      className="font-sans text-sm text-cream/40 hover:text-gold
                                  transition-colors duration-200"
                     >
                       {l.label}
@@ -118,14 +118,14 @@ export default function Footer() {
       </div>
 
       {/* ── Bottom bar ─────────────────────────── */}
-      <div className="border-t border-grey-800">
-        <div className="max-w-screen-2xl mx-auto px-6 lg:px-12 py-5
+      <div className="border-t border-navy-800">
+        <div className="max-w-screen-2xl mx-auto px-5 lg:px-12 py-5
                         flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="label text-grey-700">
-            © {new Date().getFullYear()} Maldonado-Winz Immobilien GmbH
+          <p className="label text-cream/25">
+            © {new Date().getFullYear()} Maldonado Winz Immobilien GmbH · München
           </p>
-          <p className="label text-grey-800">
-            München · Schwabing · Bogenhausen · Maxvorstadt
+          <p className="label text-cream/15">
+            Schwabing · Bogenhausen · Lehel · Maxvorstadt · Herzogpark
           </p>
         </div>
       </div>

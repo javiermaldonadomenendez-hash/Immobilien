@@ -9,8 +9,23 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        ink: '#0A0A0A',
-        paper: '#FFFFFF',
+        // Core
+        ink:    '#0A0A0A',
+        paper:  '#FFFFFF',
+        cream:  '#FAF8F4',   // Hintergrund Off-White/Creme
+
+        // Brand
+        navy:   '#1C2B4A',   // Primärfarbe Dunkelblau
+        'navy-800': '#152038',
+        'navy-600': '#2D4270',
+        'navy-200': '#D0D9EC',
+        'navy-100': '#EAF0F7',
+
+        gold:   '#B8955A',   // Akzentfarbe Gold/Cognac
+        'gold-light': '#D4B483',
+        'gold-dark':  '#8C6E3C',
+
+        // Neutrals
         'grey-50':  '#FAFAFA',
         'grey-100': '#F4F4F4',
         'grey-200': '#E8E8E8',
@@ -21,7 +36,7 @@ const config: Config = {
         'grey-800': '#2A2A2A',
       },
       fontFamily: {
-        display: ['var(--font-bebas)', 'Impact', 'Arial Narrow', 'sans-serif'],
+        display: ['var(--font-cormorant)', 'Georgia', 'Times New Roman', 'serif'],
         sans:    ['var(--font-inter)', 'Helvetica Neue', 'Arial', 'sans-serif'],
       },
       fontSize: {
