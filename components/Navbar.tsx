@@ -60,10 +60,10 @@ export default function Navbar() {
         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${navBg}`}
       >
-        <div className="max-w-screen-2xl mx-auto px-5 lg:px-12 h-16 flex items-center justify-between">
+        <div className="max-w-screen-2xl mx-auto px-5 lg:px-12 h-16 relative flex items-center">
 
           {/* Left nav links */}
-          <nav className="hidden lg:flex items-center gap-8 flex-1">
+          <nav className="hidden lg:flex items-center gap-8">
             {leftLinks.map((l) => (
               <Link
                 key={l.label}
@@ -77,31 +77,37 @@ export default function Navbar() {
             ))}
           </nav>
 
-          {/* Centered Brand */}
+          {/* Brand – absolute center relative to the header */}
           <Link
             href="/"
-            className={`font-display text-xl font-light tracking-wide whitespace-nowrap ${textCol} hover:opacity-70 transition-opacity`}
+            className={`hidden lg:block absolute left-1/2 -translate-x-1/2 font-display text-xl font-light tracking-wide whitespace-nowrap ${textCol} hover:opacity-70 transition-opacity`}
           >
             Maldonado &amp; Winz Immobilien
           </Link>
 
-          {/* Right nav links + CTA + Hamburger */}
-          <div className="hidden lg:flex items-center gap-8 flex-1 justify-end">
-            {rightLinks.map((l) => (
-              <Link
-                key={l.label}
-                href={l.href}
-                className={`label transition-colors ${
-                  scrolled ? 'text-grey-500 hover:text-brown' : 'text-white/60 hover:text-white'
-                }`}
-              >
-                {l.label}
-              </Link>
-            ))}
-          </div>
+          {/* Mobile: brand left-aligned */}
+          <Link
+            href="/"
+            className={`lg:hidden font-display text-lg font-light tracking-wide ${textCol} hover:opacity-70 transition-opacity`}
+          >
+            Maldonado &amp; Winz
+          </Link>
 
-          {/* CTA + Hamburger */}
-          <div className="flex items-center gap-5 lg:ml-8">
+          {/* Right: nav links + CTA + Hamburger */}
+          <div className="ml-auto flex items-center gap-5">
+            <div className="hidden lg:flex items-center gap-8 mr-5">
+              {rightLinks.map((l) => (
+                <Link
+                  key={l.label}
+                  href={l.href}
+                  className={`label transition-colors ${
+                    scrolled ? 'text-grey-500 hover:text-brown' : 'text-white/60 hover:text-white'
+                  }`}
+                >
+                  {l.label}
+                </Link>
+              ))}
+            </div>
             <button
               onClick={openBewertungWizard}
               className={`hidden lg:inline-flex items-center gap-2 px-5 py-2.5 label transition-colors duration-200 ${
