@@ -6,7 +6,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight, Phone } from 'lucide-react'
 
-export default function ClosingCTA() {
+export default function ClosingCTA({ onBewertungClick }: { onBewertungClick?: () => void }) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-80px' })
 
@@ -37,7 +37,7 @@ export default function ClosingCTA() {
                 Jede Immobilie hat ihre eigene Geschichte — und jede Situation verdient eine individuelle Antwort. Ob Sie verkaufen, vermieten oder einfach wissen möchten, was Ihre Immobilie heute wert ist: Wir nehmen uns die Zeit für Sie.
               </p>
               <p className="font-sans text-[15px] text-grey-500 leading-relaxed max-w-md mb-12">
-                — Javier Maldonado &amp; Thomas Winz
+                — Javier Maldonado &amp; Joshua Winz
               </p>
 
               <div className="flex flex-col sm:flex-row items-start gap-4">

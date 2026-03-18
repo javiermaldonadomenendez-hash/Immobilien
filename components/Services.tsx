@@ -44,7 +44,7 @@ const services = [
   },
 ]
 
-export default function Services() {
+export default function Services({ onBewertungClick }: { onBewertungClick?: () => void }) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
 
@@ -85,6 +85,26 @@ export default function Services() {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: i * 0.1, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             >
+              {s.num === '03' && onBewertungClick ? (
+              <button
+                onClick={onBewertungClick}
+                className={`group block w-full text-left py-12 px-6 lg:px-8 transition-colors duration-300 relative overflow-hidden hover:bg-brown`}
+              >
+                <div className="absolute -bottom-6 -right-2 font-display text-[8rem] leading-none pointer-events-none select-none transition-colors duration-300 text-grey-100 group-hover:text-white/5">
+                  {s.num}
+                </div>
+                <div className="relative z-10">
+                  <p className="label mb-6 transition-colors duration-300 text-grey-400 group-hover:text-taupe">{s.tag}</p>
+                  <div className="w-8 h-0.5 mb-6 transition-colors duration-300 bg-grey-200 group-hover:bg-taupe" />
+                  <h3 className="font-display text-[clamp(2.2rem,4vw,3.5rem)] leading-none font-light mb-6 transition-colors duration-300 text-brown group-hover:text-sand">{s.title}</h3>
+                  <p className="font-sans text-[15px] leading-relaxed mb-10 transition-colors duration-300 text-grey-500 group-hover:text-sand/70">{s.desc}</p>
+                  <div className="flex items-center gap-2 label transition-colors duration-300 text-grey-400 group-hover:text-taupe">
+                    {s.cta}
+                    <ArrowUpRight size={12} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  </div>
+                </div>
+              </button>
+              ) : (
               <Link
                 href={s.href}
                 className={`group block py-12 px-6 lg:px-8 transition-colors duration-300 relative overflow-hidden
@@ -129,6 +149,7 @@ export default function Services() {
                   </div>
                 </div>
               </Link>
+              )}
             </motion.div>
           ))}
         </div>

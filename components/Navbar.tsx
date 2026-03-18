@@ -5,14 +5,23 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import { X, Plus, Phone } from 'lucide-react'
 
-const primaryLinks = [
-  { href: '/',              label: 'Start' },
+const leftLinks = [
+  { href: '/',             label: 'Start' },
   { href: '#leistungen',   label: 'Für Eigentümer' },
   { href: '#angebote',     label: 'Immobilienangebote' },
+]
+
+const rightLinks = [
   { href: '#bewertung',    label: 'Bewertung' },
   { href: '#ueber-uns',    label: 'Über uns' },
   { href: '#kontakt',      label: 'Kontakt' },
 ]
+
+const primaryLinks = [...leftLinks, ...rightLinks]
+
+function openBewertungWizard() {
+  document.dispatchEvent(new CustomEvent('open-bewertung-wizard'))
+}
 
 const serviceLinks = [
   { href: '#leistungen', label: 'Immobilie verkaufen' },
@@ -53,17 +62,9 @@ export default function Navbar() {
       >
         <div className="max-w-screen-2xl mx-auto px-5 lg:px-12 h-16 flex items-center justify-between">
 
-          {/* Logo */}
-          <Link
-            href="/"
-            className={`font-display text-2xl font-light tracking-wide ${textCol} hover:opacity-70 transition-opacity`}
-          >
-            Maldonado Winz
-          </Link>
-
-          {/* Desktop nav */}
-          <nav className="hidden lg:flex items-center gap-8">
-            {primaryLinks.map((l) => (
+          {/* Left nav links */}
+          <nav className="hidden lg:flex items-center gap-8 flex-1">
+            {leftLinks.map((l) => (
               <Link
                 key={l.label}
                 href={l.href}
@@ -76,10 +77,33 @@ export default function Navbar() {
             ))}
           </nav>
 
+          {/* Centered Brand */}
+          <Link
+            href="/"
+            className={`font-display text-xl font-light tracking-wide whitespace-nowrap ${textCol} hover:opacity-70 transition-opacity`}
+          >
+            Maldonado &amp; Winz Immobilien
+          </Link>
+
+          {/* Right nav links + CTA + Hamburger */}
+          <div className="hidden lg:flex items-center gap-8 flex-1 justify-end">
+            {rightLinks.map((l) => (
+              <Link
+                key={l.label}
+                href={l.href}
+                className={`label transition-colors ${
+                  scrolled ? 'text-grey-500 hover:text-brown' : 'text-white/60 hover:text-white'
+                }`}
+              >
+                {l.label}
+              </Link>
+            ))}
+          </div>
+
           {/* CTA + Hamburger */}
-          <div className="flex items-center gap-5">
-            <Link
-              href="#bewertung"
+          <div className="flex items-center gap-5 lg:ml-8">
+            <button
+              onClick={openBewertungWizard}
               className={`hidden lg:inline-flex items-center gap-2 px-5 py-2.5 label transition-colors duration-200 ${
                 scrolled
                   ? 'bg-taupe text-sand hover:bg-taupe-dark'
@@ -87,7 +111,7 @@ export default function Navbar() {
               }`}
             >
               Kostenlos bewerten
-            </Link>
+            </button>
 
             <button
               onClick={() => setMenuOpen(true)}
@@ -188,13 +212,12 @@ export default function Navbar() {
                     45130 Essen
                   </p>
                 </div>
-                <Link
-                  href="#bewertung"
-                  onClick={() => setMenuOpen(false)}
+                <button
+                  onClick={() => { setMenuOpen(false); openBewertungWizard() }}
                   className="btn-gold self-start mt-auto"
                 >
                   Immobilie bewerten
-                </Link>
+                </button>
               </div>
             </div>
           </motion.div>

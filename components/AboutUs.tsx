@@ -15,10 +15,10 @@ const partners = [
     image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&q=85',
   },
   {
-    name: 'Thomas Winz',
+    name: 'Joshua Winz',
     role: 'Partner & Transaktionsberatung',
     focus: 'Projektentwicklung · Recht · Off-Market',
-    bio: 'Thomas Winz verbindet juristisches Fachwissen mit langjähriger Praxis in der Immobilientransaktion. Ob diskreter Off-Market-Verkauf, komplexe Eigentümerstrukturen oder Projektentwicklung: er analysiert, strukturiert und schützt die Interessen seiner Mandanten mit ruhiger Hand.',
+    bio: 'Joshua Winz verbindet juristisches Fachwissen mit langjähriger Praxis in der Immobilientransaktion. Ob diskreter Off-Market-Verkauf, komplexe Eigentümerstrukturen oder Projektentwicklung: er analysiert, strukturiert und schützt die Interessen seiner Mandanten mit ruhiger Hand.',
     image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=85',
   },
 ]

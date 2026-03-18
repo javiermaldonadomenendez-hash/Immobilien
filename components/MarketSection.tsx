@@ -23,7 +23,7 @@ const insights = [
   },
 ]
 
-export default function MarketSection() {
+export default function MarketSection({ onBewertungClick }: { onBewertungClick?: () => void }) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-80px' })
 
@@ -102,10 +102,10 @@ export default function MarketSection() {
             <p className="font-sans text-[15px] text-grey-500 leading-relaxed mb-8">
               Erhalten Sie innerhalb weniger Minuten eine erste indikative Einschätzung des Marktwertes Ihrer Immobilie — kostenlos, unverbindlich und diskret. Als Orientierungshilfe für Ihre nächsten Schritte.
             </p>
-            <Link href="#kontakt" className="btn-outline group">
+            <button onClick={onBewertungClick} className="btn-outline group">
               Schnellbewertung starten
               <ArrowRight size={12} className="group-hover:translate-x-0.5 transition-transform" />
-            </Link>
+            </button>
           </div>
 
           {/* Persönliche Bewertung */}

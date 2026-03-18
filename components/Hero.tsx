@@ -6,7 +6,7 @@ import { ArrowRight, MapPin } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-export default function Hero() {
+export default function Hero({ onBewertungClick }: { onBewertungClick?: () => void }) {
   const ref = useRef<HTMLElement>(null)
 
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
@@ -101,10 +101,10 @@ export default function Hero() {
 
           {/* CTA buttons */}
           <div className="flex flex-col sm:flex-row items-start gap-3 w-full sm:w-auto">
-            <Link href="#bewertung" className="btn-gold group w-full sm:w-auto justify-center">
+            <button onClick={onBewertungClick} className="btn-gold group w-full sm:w-auto justify-center">
               Immobilie bewerten
               <ArrowRight size={13} className="group-hover:translate-x-0.5 transition-transform" />
-            </Link>
+            </button>
             <Link href="#kontakt" className="btn-outline-light group w-full sm:w-auto justify-center">
               Beratungsgespräch
               <ArrowRight size={13} className="group-hover:translate-x-0.5 transition-transform" />
