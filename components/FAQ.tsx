@@ -11,7 +11,7 @@ const faqs = [
   },
   {
     q: 'Wie wird der Wert meiner Immobilie ermittelt?',
-    a: 'Die professionelle Marktwertermittlung basiert auf drei Säulen: der aktuellen Datenlage aus vergleichbaren Transaktionen in Ihrer Mikrolage, einer detaillierten Analyse von Baujahr, Zustand und Ausstattung Ihres Objekts sowie unserer langjährigen Marktkenntnis in München. Das Ergebnis ist kein Daumenrichtwert, sondern eine fundierte Einschätzung, die Ihnen Planungssicherheit gibt.',
+    a: 'Die professionelle Marktwertermittlung basiert auf drei Säulen: der aktuellen Datenlage aus vergleichbaren Transaktionen in Ihrer Mikrolage, einer detaillierten Analyse von Baujahr, Zustand und Ausstattung Ihres Objekts sowie unserer langjährigen Marktkenntnis in Essen. Das Ergebnis ist kein Daumenrichtwert, sondern eine fundierte Einschätzung, die Ihnen Planungssicherheit gibt.',
   },
   {
     q: 'Wie lange dauert ein typischer Verkauf?',
@@ -41,7 +41,7 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
 
   return (
-    <section id="faq" ref={ref} className="bg-cream border-t border-grey-200">
+    <section id="faq" ref={ref} className="bg-sand border-t border-grey-200">
 
       {/* ── Header ─────────────────────────────── */}
       <div className="max-w-screen-2xl mx-auto px-5 lg:px-12 py-16 border-b border-grey-200
@@ -52,10 +52,10 @@ export default function FAQ() {
           transition={{ duration: 0.6 }}
         >
           <div className="flex items-center gap-3 mb-4">
-            <div className="w-6 h-px bg-gold" />
-            <p className="label text-gold">Häufige Fragen</p>
+            <div className="w-6 h-px bg-taupe" />
+            <p className="label text-taupe">Häufige Fragen</p>
           </div>
-          <h2 className="display-lg text-navy">FAQ</h2>
+          <h2 className="display-lg text-brown">FAQ</h2>
         </motion.div>
         <motion.p
           initial={{ opacity: 0 }}
@@ -82,11 +82,11 @@ export default function FAQ() {
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
                 className="w-full flex items-center justify-between py-6 text-left group"
               >
-                <span className="font-sans text-[15px] font-medium text-navy pr-8 group-hover:text-gold
+                <span className="font-sans text-[15px] font-medium text-brown pr-8 group-hover:text-taupe
                                  transition-colors duration-200 leading-snug">
                   {faq.q}
                 </span>
-                <span className="flex-shrink-0 text-grey-300 group-hover:text-gold transition-colors duration-200">
+                <span className="flex-shrink-0 text-grey-300 group-hover:text-taupe transition-colors duration-200">
                   {openIndex === i ? (
                     <Minus size={16} strokeWidth={1.5} />
                   ) : (

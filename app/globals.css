@@ -10,24 +10,23 @@
   }
 
   body {
-    @apply bg-cream text-navy font-sans;
+    @apply bg-sand text-ink font-sans;
     font-size: 16px;
   }
 
   * { box-sizing: border-box; }
 
   ::selection {
-    background-color: #1C2B4A;
-    color: #FAF8F4;
+    background-color: #5C4A3A;
+    color: #F5F0E8;
   }
 
-  /* Premium scrollbar */
+  /* Minimalistischer Scrollbar */
   ::-webkit-scrollbar       { width: 4px; }
-  ::-webkit-scrollbar-track { background: #FAF8F4; }
-  ::-webkit-scrollbar-thumb { background: #B8955A; }
+  ::-webkit-scrollbar-track { background: #F5F0E8; }
+  ::-webkit-scrollbar-thumb { background: #9C8B7A; }
 
-  /* Dark select options */
-  select option { background: #1C2B4A; color: #FAF8F4; }
+  select option { background: #5C4A3A; color: #F5F0E8; }
 }
 
 @layer components {
@@ -36,11 +35,8 @@
   .label {
     @apply font-sans text-[11px] font-medium uppercase tracking-[0.25em] text-grey-400;
   }
-  .label-light {
-    @apply label text-grey-300;
-  }
-  .label-gold {
-    @apply label text-gold;
+  .label-brown {
+    @apply label text-taupe;
   }
 
   /* ─── Section headlines (Cormorant Garamond serif) ── */
@@ -57,60 +53,41 @@
     @apply font-display text-[clamp(2rem,4vw,3.5rem)] leading-[1.1] font-light;
   }
 
-  /* ─── Body text ─────────────────────────────────── */
-  .body-lg {
-    @apply font-sans text-base text-grey-600 leading-relaxed;
-  }
-  .body-md {
-    @apply font-sans text-[15px] text-grey-500 leading-relaxed;
-  }
-  .body-sm {
-    @apply font-sans text-sm text-grey-400 leading-relaxed;
-  }
-
-  /* ─── Buttons (Navy primary) ─────────────────────── */
+  /* ─── Buttons ────────────────────────────────────── */
   .btn-primary {
-    @apply inline-flex items-center gap-3 bg-navy text-cream px-8 py-4
+    @apply inline-flex items-center gap-3 bg-brown text-sand px-8 py-4
            font-sans text-[11px] font-semibold tracking-[0.2em] uppercase
-           hover:bg-navy-800 transition-colors duration-200 min-h-[48px];
+           hover:bg-brown-800 transition-colors duration-200 min-h-[48px];
   }
-  .btn-gold {
-    @apply inline-flex items-center gap-3 bg-gold text-cream px-8 py-4
+  .btn-accent {
+    @apply inline-flex items-center gap-3 bg-taupe text-sand px-8 py-4
            font-sans text-[11px] font-semibold tracking-[0.2em] uppercase
-           hover:bg-gold-dark transition-colors duration-200 min-h-[48px];
+           hover:bg-taupe-dark transition-colors duration-200 min-h-[48px];
   }
   .btn-outline {
-    @apply inline-flex items-center gap-3 border border-navy text-navy px-8 py-4
+    @apply inline-flex items-center gap-3 border border-brown text-brown px-8 py-4
            font-sans text-[11px] font-semibold tracking-[0.2em] uppercase
-           hover:bg-navy hover:text-cream transition-colors duration-200 min-h-[48px];
+           hover:bg-brown hover:text-sand transition-colors duration-200 min-h-[48px];
   }
   .btn-outline-light {
-    @apply inline-flex items-center gap-3 border border-cream/40 text-cream px-8 py-4
+    @apply inline-flex items-center gap-3 border border-sand/40 text-sand px-8 py-4
            font-sans text-[11px] font-semibold tracking-[0.2em] uppercase
-           hover:bg-cream hover:text-navy transition-colors duration-200 min-h-[48px];
+           hover:bg-sand hover:text-brown transition-colors duration-200 min-h-[48px];
   }
   .btn-ghost {
     @apply inline-flex items-center gap-2 font-sans text-[11px] font-semibold
-           tracking-[0.2em] uppercase text-grey-400 hover:text-navy
+           tracking-[0.2em] uppercase text-grey-400 hover:text-brown
            transition-colors duration-200;
   }
 
-  /* ─── Gold accent line ───────────────────────────── */
-  .gold-line {
-    @apply w-12 h-0.5 bg-gold;
+  /* ─── Accent line ────────────────────────────────── */
+  .accent-line {
+    @apply w-10 h-0.5 bg-taupe;
   }
 
   /* ─── Grid dividers ─────────────────────────────── */
   .divider-h { @apply w-full h-px bg-grey-200; }
   .divider-v { @apply w-px h-full bg-grey-200; }
-
-  /* ─── Section padding ───────────────────────────── */
-  .section-pad {
-    @apply py-20 lg:py-28;
-  }
-  .section-pad-sm {
-    @apply py-14 lg:py-20;
-  }
 }
 
 @layer utilities {
@@ -119,8 +96,6 @@
   }
   .no-scrollbar::-webkit-scrollbar { display: none; }
   .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-
-  /* Mobile safe area bottom padding (for sticky bar) */
   .pb-safe {
     padding-bottom: calc(4rem + env(safe-area-inset-bottom));
   }

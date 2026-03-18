@@ -11,7 +11,7 @@ const partners = [
     name: 'Javier Maldonado',
     role: 'Geschäftsführender Partner',
     focus: 'Vermarktung · Verhandlung · Bewertung',
-    bio: 'Mit über zwölf Jahren Erfahrung im Münchner Premium-Immobilienmarkt begleitet Javier Maldonado seine Mandanten von der ersten Einschätzung bis zur finalen Übergabe. Sein Hintergrund in der Finanzberatung schärft seinen Blick für wirtschaftliche Zusammenhänge — zum klaren Vorteil seiner Verkäufer.',
+    bio: 'Mit über zwölf Jahren Erfahrung im Essener Premium-Immobilienmarkt begleitet Javier Maldonado seine Mandanten von der ersten Einschätzung bis zur finalen Übergabe. Sein Hintergrund in der Finanzberatung schärft seinen Blick für wirtschaftliche Zusammenhänge — zum klaren Vorteil seiner Verkäufer.',
     image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&q=85',
   },
   {
@@ -28,7 +28,7 @@ export default function AboutUs() {
   const isInView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
-    <section id="ueber-uns" ref={ref} className="bg-cream border-t border-grey-200 overflow-hidden">
+    <section id="ueber-uns" ref={ref} className="bg-sand border-t border-grey-200 overflow-hidden">
 
       {/* ── Philosophy block ────────────────────── */}
       <div className="max-w-screen-2xl mx-auto">
@@ -43,8 +43,8 @@ export default function AboutUs() {
           >
             <div>
               <div className="flex items-center gap-3 mb-8">
-                <div className="w-6 h-px bg-gold" />
-                <p className="label text-gold">Über uns</p>
+                <div className="w-6 h-px bg-taupe" />
+                <p className="label text-taupe">Über uns</p>
               </div>
 
               <div className="overflow-hidden mb-2">
@@ -53,7 +53,7 @@ export default function AboutUs() {
                   animate={isInView ? { y: 0 } : {}}
                   transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                 >
-                  <h2 className="font-display text-[clamp(4rem,9vw,8rem)] leading-[0.9] font-light text-navy">
+                  <h2 className="font-display text-[clamp(4rem,9vw,8rem)] leading-[0.9] font-light text-brown">
                     Philosophie
                   </h2>
                 </motion.div>
@@ -64,7 +64,7 @@ export default function AboutUs() {
                   animate={isInView ? { y: 0 } : {}}
                   transition={{ delay: 0.06, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                 >
-                  <h2 className="font-display text-[clamp(4rem,9vw,8rem)] leading-[0.9] font-light text-navy/40">
+                  <h2 className="font-display text-[clamp(4rem,9vw,8rem)] leading-[0.9] font-light text-brown/40">
                     & Ansatz
                   </h2>
                 </motion.div>
@@ -99,13 +99,13 @@ export default function AboutUs() {
                   initial={{ opacity: 0, y: 16 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ delay: 0.3 + i * 0.08, duration: 0.6 }}
-                  className="bg-cream p-6 group hover:bg-navy transition-colors duration-300 cursor-default"
+                  className="bg-sand p-6 group hover:bg-brown transition-colors duration-300 cursor-default"
                 >
-                  <p className="font-display text-xl font-medium text-navy group-hover:text-cream
+                  <p className="font-display text-xl font-medium text-brown group-hover:text-sand
                                 transition-colors duration-300 leading-tight mb-1">
                     {v.value}
                   </p>
-                  <p className="label text-grey-400 group-hover:text-gold transition-colors duration-300">
+                  <p className="label text-grey-400 group-hover:text-taupe transition-colors duration-300">
                     {v.sub}
                   </p>
                 </motion.div>
@@ -127,12 +127,12 @@ export default function AboutUs() {
               className="object-cover"
               sizes="(max-width: 1024px) 100vw, 50vw"
             />
-            <div className="absolute inset-0 bg-navy/20" />
+            <div className="absolute inset-0 bg-brown/20" />
             <div className="absolute bottom-8 left-8 right-8">
-              <div className="bg-cream/95 p-6 border-l-4 border-gold">
-                <p className="label text-gold mb-1">Unser Büro</p>
-                <p className="font-sans text-sm text-navy font-medium">
-                  Maximilianstraße 12, 80539 München
+              <div className="bg-sand/95 p-6 border-l-4 border-taupe">
+                <p className="label text-taupe mb-1">Unser Büro</p>
+                <p className="font-sans text-sm text-brown font-medium">
+                  Rüttenscheider Str. 52, 45130 Essen
                 </p>
               </div>
             </div>
@@ -144,10 +144,10 @@ export default function AboutUs() {
       <div className="border-t border-grey-200">
         <div className="max-w-screen-2xl mx-auto px-5 lg:px-12 py-16 border-b border-grey-200">
           <div className="flex items-center gap-3 mb-4">
-            <div className="w-6 h-px bg-gold" />
-            <p className="label text-gold">Die Partner</p>
+            <div className="w-6 h-px bg-taupe" />
+            <p className="label text-taupe">Die Partner</p>
           </div>
-          <h2 className="display-md text-navy">Team Maldonado Winz</h2>
+          <h2 className="display-md text-brown">Team Maldonado Winz</h2>
         </div>
         <div className="max-w-screen-2xl mx-auto px-5 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-grey-200">
@@ -168,13 +168,13 @@ export default function AboutUs() {
                     className="object-cover grayscale"
                     sizes="128px"
                   />
-                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-gold" />
+                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-taupe" />
                 </div>
 
                 {/* Info */}
                 <div className="flex-1">
-                  <p className="label text-gold mb-2">{partner.role}</p>
-                  <h3 className="font-display text-3xl font-light text-navy mb-1">{partner.name}</h3>
+                  <p className="label text-taupe mb-2">{partner.role}</p>
+                  <h3 className="font-display text-3xl font-light text-brown mb-1">{partner.name}</h3>
                   <p className="font-sans text-[11px] uppercase tracking-widest text-grey-400 mb-4">
                     {partner.focus}
                   </p>

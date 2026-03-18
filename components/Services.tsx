@@ -49,7 +49,7 @@ export default function Services() {
   const isInView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
-    <section id="leistungen" ref={ref} className="bg-cream border-t border-grey-200">
+    <section id="leistungen" ref={ref} className="bg-sand border-t border-grey-200">
 
       {/* ── Section header ─────────────────────────── */}
       <div className="max-w-screen-2xl mx-auto px-5 lg:px-12 py-16 border-b border-grey-200
@@ -60,10 +60,10 @@ export default function Services() {
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         >
           <div className="flex items-center gap-3 mb-4">
-            <div className="w-6 h-px bg-gold" />
-            <p className="label text-gold">Was wir für Sie tun</p>
+            <div className="w-6 h-px bg-taupe" />
+            <p className="label text-taupe">Was wir für Sie tun</p>
           </div>
-          <h2 className="display-lg text-navy">Unsere Leistungen</h2>
+          <h2 className="display-lg text-brown">Unsere Leistungen</h2>
         </motion.div>
         <motion.p
           initial={{ opacity: 0 }}
@@ -88,7 +88,7 @@ export default function Services() {
               <Link
                 href={s.href}
                 className={`group block py-12 px-6 lg:px-8 transition-colors duration-300 relative overflow-hidden
-                            ${s.accent ? 'bg-navy hover:bg-navy-800' : 'hover:bg-navy'}`}
+                            ${s.accent ? 'bg-brown hover:bg-brown-800' : 'hover:bg-brown'}`}
               >
                 {/* Background number */}
                 <div className={`absolute -bottom-6 -right-2 font-display text-[8rem] leading-none
@@ -100,30 +100,30 @@ export default function Services() {
                 <div className="relative z-10">
                   {/* Tag */}
                   <p className={`label mb-6 transition-colors duration-300
-                                 ${s.accent ? 'text-gold' : 'text-grey-400 group-hover:text-gold'}`}>
+                                 ${s.accent ? 'text-taupe' : 'text-grey-400 group-hover:text-taupe'}`}>
                     {s.tag}
                   </p>
 
                   {/* Gold accent line */}
                   <div className={`w-8 h-0.5 mb-6 transition-colors duration-300
-                                   ${s.accent ? 'bg-gold' : 'bg-grey-200 group-hover:bg-gold'}`} />
+                                   ${s.accent ? 'bg-taupe' : 'bg-grey-200 group-hover:bg-taupe'}`} />
 
                   {/* Title */}
                   <h3 className={`font-display text-[clamp(2.2rem,4vw,3.5rem)] leading-none font-light mb-6
                                   transition-colors duration-300
-                                  ${s.accent ? 'text-cream' : 'text-navy group-hover:text-cream'}`}>
+                                  ${s.accent ? 'text-sand' : 'text-brown group-hover:text-sand'}`}>
                     {s.title}
                   </h3>
 
                   {/* Description */}
                   <p className={`font-sans text-[15px] leading-relaxed mb-10 transition-colors duration-300
-                                 ${s.accent ? 'text-cream/70' : 'text-grey-500 group-hover:text-cream/70'}`}>
+                                 ${s.accent ? 'text-sand/70' : 'text-grey-500 group-hover:text-sand/70'}`}>
                     {s.desc}
                   </p>
 
                   {/* CTA */}
                   <div className={`flex items-center gap-2 label transition-colors duration-300
-                                   ${s.accent ? 'text-gold' : 'text-grey-400 group-hover:text-gold'}`}>
+                                   ${s.accent ? 'text-taupe' : 'text-grey-400 group-hover:text-taupe'}`}>
                     {s.cta}
                     <ArrowUpRight size={12} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                   </div>

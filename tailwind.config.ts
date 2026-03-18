@@ -10,30 +10,34 @@ const config: Config = {
     extend: {
       colors: {
         // Core
-        ink:    '#0A0A0A',
+        ink:    '#1A1A18',   // Warmes Fast-Schwarz
         paper:  '#FFFFFF',
-        cream:  '#FAF8F4',   // Hintergrund Off-White/Creme
 
-        // Brand
-        navy:   '#1C2B4A',   // Primärfarbe Dunkelblau
-        'navy-800': '#152038',
-        'navy-600': '#2D4270',
-        'navy-200': '#D0D9EC',
-        'navy-100': '#EAF0F7',
+        // Hintergrund
+        sand:   '#F5F0E8',   // Warmes Beige/Sand
+        'sand-dark': '#EDE6D6', // Etwas dunkleres Beige für Kontrast
 
-        gold:   '#B8955A',   // Akzentfarbe Gold/Cognac
-        'gold-light': '#D4B483',
-        'gold-dark':  '#8C6E3C',
+        // Brand – Braun
+        brown:  '#5C4A3A',   // Primärfarbe Dunkelbraun
+        'brown-800': '#3E3028',
+        'brown-600': '#7A6455',
+        'brown-200': '#D4C4B0',
+        'brown-100': '#EDE6D6',
 
-        // Neutrals
-        'grey-50':  '#FAFAFA',
-        'grey-100': '#F4F4F4',
-        'grey-200': '#E8E8E8',
-        'grey-300': '#D0D0D0',
-        'grey-400': '#A0A0A0',
-        'grey-500': '#808080',
-        'grey-600': '#5A5A5A',
-        'grey-800': '#2A2A2A',
+        // Akzent – Warmes Taupe
+        taupe:  '#9C8B7A',
+        'taupe-light': '#B8A898',
+        'taupe-dark':  '#7A6B5C',
+
+        // Neutrals Hellgrau (kühler Kontrast)
+        'grey-50':  '#F8F8F6',
+        'grey-100': '#F0EFEC',
+        'grey-200': '#E2E0DB',
+        'grey-300': '#C8C4BC',
+        'grey-400': '#A8A49C',
+        'grey-500': '#888480',
+        'grey-600': '#6A6660',
+        'grey-800': '#3A3830',
       },
       fontFamily: {
         display: ['var(--font-cormorant)', 'Georgia', 'Times New Roman', 'serif'],

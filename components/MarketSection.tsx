@@ -9,7 +9,7 @@ const insights = [
   {
     icon: TrendingUp,
     title: 'Nachfrage bleibt strukturell stark',
-    desc: 'Der Münchner Immobilienmarkt zeichnet sich durch ein dauerhaft knappes Angebot bei anhaltend hoher Nachfrage aus — insbesondere für hochwertige Lagen und gut aufgeteilte Wohnimmobilien. Eigentümer profitieren von dieser strukturellen Grundkonstellation.',
+    desc: 'Der Essener Immobilienmarkt zeichnet sich durch ein dauerhaft knappes Angebot bei anhaltend hoher Nachfrage aus — insbesondere für hochwertige Lagen und gut aufgeteilte Wohnimmobilien. Eigentümer profitieren von dieser strukturellen Grundkonstellation.',
   },
   {
     icon: Home,
@@ -28,7 +28,7 @@ export default function MarketSection() {
   const isInView = useInView(ref, { once: true, margin: '-80px' })
 
   return (
-    <section id="markt" ref={ref} className="bg-cream border-t border-grey-200">
+    <section id="markt" ref={ref} className="bg-sand border-t border-grey-200">
 
       {/* ── Header ─────────────────────────────── */}
       <div className="max-w-screen-2xl mx-auto px-5 lg:px-12 py-16 border-b border-grey-200
@@ -39,10 +39,10 @@ export default function MarketSection() {
           transition={{ duration: 0.6 }}
         >
           <div className="flex items-center gap-3 mb-4">
-            <div className="w-6 h-px bg-gold" />
-            <p className="label text-gold">Markt &amp; Trends</p>
+            <div className="w-6 h-px bg-taupe" />
+            <p className="label text-taupe">Markt &amp; Trends</p>
           </div>
-          <h2 className="display-lg text-navy">Region München</h2>
+          <h2 className="display-lg text-brown">Region Essen</h2>
         </motion.div>
         <motion.p
           initial={{ opacity: 0 }}
@@ -65,18 +65,18 @@ export default function MarketSection() {
                 initial={{ opacity: 0, y: 24 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: i * 0.12, duration: 0.7 }}
-                className="bg-cream p-8 lg:p-10 group hover:bg-navy transition-colors duration-300"
+                className="bg-sand p-8 lg:p-10 group hover:bg-brown transition-colors duration-300"
               >
                 <Icon
                   size={26}
                   strokeWidth={1.2}
-                  className="text-gold mb-6 transition-transform duration-300 group-hover:scale-110"
+                  className="text-taupe mb-6 transition-transform duration-300 group-hover:scale-110"
                 />
-                <h3 className="font-display text-2xl font-light text-navy group-hover:text-cream
+                <h3 className="font-display text-2xl font-light text-brown group-hover:text-sand
                                transition-colors duration-300 mb-4 leading-tight">
                   {item.title}
                 </h3>
-                <p className="font-sans text-[15px] text-grey-500 group-hover:text-cream/65
+                <p className="font-sans text-[15px] text-grey-500 group-hover:text-sand/65
                                transition-colors duration-300 leading-relaxed">
                   {item.desc}
                 </p>
@@ -94,9 +94,9 @@ export default function MarketSection() {
           className="grid grid-cols-1 lg:grid-cols-2 gap-px bg-grey-200 border border-grey-200"
         >
           {/* Online Schnellbewertung */}
-          <div className="bg-cream p-8 lg:p-10">
-            <p className="label text-gold mb-4">Online-Schnellcheck</p>
-            <h3 className="font-display text-3xl font-light text-navy mb-4 leading-tight">
+          <div className="bg-sand p-8 lg:p-10">
+            <p className="label text-taupe mb-4">Online-Schnellcheck</p>
+            <h3 className="font-display text-3xl font-light text-brown mb-4 leading-tight">
               Erster Eindruck in Minuten
             </h3>
             <p className="font-sans text-[15px] text-grey-500 leading-relaxed mb-8">
@@ -109,12 +109,12 @@ export default function MarketSection() {
           </div>
 
           {/* Persönliche Bewertung */}
-          <div className="bg-navy p-8 lg:p-10">
-            <p className="label text-gold mb-4">Persönliche Wertermittlung</p>
-            <h3 className="font-display text-3xl font-light text-cream mb-4 leading-tight">
+          <div className="bg-brown p-8 lg:p-10">
+            <p className="label text-taupe mb-4">Persönliche Wertermittlung</p>
+            <h3 className="font-display text-3xl font-light text-sand mb-4 leading-tight">
               Präzision vor Ort
             </h3>
-            <p className="font-sans text-[15px] text-cream/60 leading-relaxed mb-8">
+            <p className="font-sans text-[15px] text-sand/60 leading-relaxed mb-8">
               Bei der professionellen Wertermittlung vor Ort analysieren wir Bauzustand, Lage, Ausstattung und aktuelle Vergleichstransaktionen. Das Ergebnis: ein belastbarer Marktwert als solide Grundlage für Ihren Verkauf oder Ihre Planung.
             </p>
             <Link href="#kontakt" className="btn-outline-light group">

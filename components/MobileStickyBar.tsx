@@ -23,7 +23,7 @@ export default function MobileStickyBar() {
           exit={{ y: '100%' }}
           transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
           className="fixed bottom-0 left-0 right-0 z-40 lg:hidden
-                     bg-cream border-t border-grey-200 shadow-lg
+                     bg-sand border-t border-grey-200 shadow-lg
                      pb-[env(safe-area-inset-bottom)]"
         >
           <div className="flex items-stretch divide-x divide-grey-200">
@@ -33,8 +33,8 @@ export default function MobileStickyBar() {
               className="flex-1 flex flex-col items-center justify-center gap-1 py-3.5 px-4
                          hover:bg-grey-50 transition-colors active:bg-grey-100"
             >
-              <Phone size={18} strokeWidth={1.5} className="text-navy" />
-              <span className="font-sans text-[10px] font-semibold uppercase tracking-widest text-navy">
+              <Phone size={18} strokeWidth={1.5} className="text-brown" />
+              <span className="font-sans text-[10px] font-semibold uppercase tracking-widest text-brown">
                 Anrufen
               </span>
             </a>
@@ -43,10 +43,10 @@ export default function MobileStickyBar() {
             <Link
               href="#bewertung"
               className="flex-[2] flex flex-col items-center justify-center gap-1 py-3.5 px-4
-                         bg-gold hover:bg-gold-dark transition-colors active:bg-gold-dark"
+                         bg-taupe hover:bg-taupe-dark transition-colors active:bg-taupe-dark"
             >
-              <Star size={18} strokeWidth={1.5} className="text-cream" />
-              <span className="font-sans text-[10px] font-semibold uppercase tracking-widest text-cream">
+              <Star size={18} strokeWidth={1.5} className="text-sand" />
+              <span className="font-sans text-[10px] font-semibold uppercase tracking-widest text-sand">
                 Immobilie bewerten
               </span>
             </Link>
@@ -58,10 +58,10 @@ export default function MobileStickyBar() {
                          hover:bg-grey-50 transition-colors active:bg-grey-100"
             >
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
-                   stroke="currentColor" strokeWidth="1.5" className="text-navy">
+                   stroke="currentColor" strokeWidth="1.5" className="text-brown">
                 <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
               </svg>
-              <span className="font-sans text-[10px] font-semibold uppercase tracking-widest text-navy">
+              <span className="font-sans text-[10px] font-semibold uppercase tracking-widest text-brown">
                 Kontakt
               </span>
             </Link>

@@ -32,10 +32,10 @@ export default function TrustSection() {
   const isInView = useInView(ref, { once: true, margin: '-80px' })
 
   return (
-    <section ref={ref} className="bg-navy border-t border-navy-800">
+    <section ref={ref} className="bg-brown border-t border-brown-800">
 
       {/* ── Header ─────────────────────────────── */}
-      <div className="max-w-screen-2xl mx-auto px-5 lg:px-12 py-16 border-b border-navy-800
+      <div className="max-w-screen-2xl mx-auto px-5 lg:px-12 py-16 border-b border-brown-800
                       flex flex-col lg:flex-row items-start lg:items-end justify-between gap-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -43,16 +43,16 @@ export default function TrustSection() {
           transition={{ duration: 0.6 }}
         >
           <div className="flex items-center gap-3 mb-4">
-            <div className="w-6 h-px bg-gold" />
-            <p className="label text-gold">Warum Maldonado Winz</p>
+            <div className="w-6 h-px bg-taupe" />
+            <p className="label text-taupe">Warum Maldonado Winz</p>
           </div>
-          <h2 className="display-lg text-cream">Unser Versprechen</h2>
+          <h2 className="display-lg text-sand">Unser Versprechen</h2>
         </motion.div>
         <motion.p
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ delay: 0.2, duration: 0.6 }}
-          className="font-sans text-base text-cream/50 max-w-sm leading-relaxed"
+          className="font-sans text-base text-sand/50 max-w-sm leading-relaxed"
         >
           Was uns von klassischen Maklerbüros unterscheidet — in vier konkreten Punkten.
         </motion.p>
@@ -60,7 +60,7 @@ export default function TrustSection() {
 
       {/* ── Pillars ─────────────────────────────── */}
       <div className="max-w-screen-2xl mx-auto px-5 lg:px-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-navy-800">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-brown-800">
           {pillars.map((p, i) => {
             const Icon = p.icon
             return (
@@ -69,17 +69,17 @@ export default function TrustSection() {
                 initial={{ opacity: 0, y: 24 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: i * 0.1, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                className="py-12 px-6 lg:px-8 group hover:bg-navy-800 transition-colors duration-300"
+                className="py-12 px-6 lg:px-8 group hover:bg-brown-800 transition-colors duration-300"
               >
                 <Icon
                   size={28}
                   strokeWidth={1.2}
-                  className="text-gold mb-8 group-hover:scale-110 transition-transform duration-300"
+                  className="text-taupe mb-8 group-hover:scale-110 transition-transform duration-300"
                 />
-                <h3 className="font-display text-[1.75rem] font-light text-cream leading-tight mb-4">
+                <h3 className="font-display text-[1.75rem] font-light text-sand leading-tight mb-4">
                   {p.title}
                 </h3>
-                <p className="font-sans text-[15px] text-cream/55 leading-relaxed">
+                <p className="font-sans text-[15px] text-sand/55 leading-relaxed">
                   {p.desc}
                 </p>
               </motion.div>
@@ -88,7 +88,7 @@ export default function TrustSection() {
         </div>
       </div>
 
-      <div className="border-t border-navy-800" />
+      <div className="border-t border-brown-800" />
     </section>
   )
 }

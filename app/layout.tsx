@@ -20,11 +20,11 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'Maldonado Winz Immobilien — Premium Immobilienmakler München',
+  title: 'Maldonado Winz Immobilien — Premium Immobilienmakler Essen',
   description:
-    'Boutique-Makler für hochwertige Wohnimmobilien in München. Diskrete Vermarktung, tiefgreifende Beratung, maximaler Verkaufserlös. Jetzt Immobilie kostenlos bewerten.',
+    'Boutique-Makler für hochwertige Wohnimmobilien in Essen. Diskrete Vermarktung, tiefgreifende Beratung, maximaler Verkaufserlös. Jetzt Immobilie kostenlos bewerten.',
   keywords: [
-    'Immobilienmakler München', 'Premium Immobilien', 'Immobilie verkaufen München',
+    'Immobilienmakler Essen', 'Premium Immobilien', 'Immobilie verkaufen Essen',
     'Immobilienbewertung', 'Off-Market Immobilien', 'Maldonado Winz',
   ],
 }

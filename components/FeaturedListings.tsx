@@ -10,9 +10,9 @@ const listings: PropertyCardProps[] = [
   {
     id: 1,
     ref_nr: 'MW-0091',
-    title: 'Penthouse mit Panoramablick über die Münchner Altstadt',
-    location: 'München',
-    district: 'Schwabing-West',
+    title: 'Penthouse mit Panoramablick über die Essener Altstadt',
+    location: 'Essen',
+    district: 'Rüttenscheid',
     price: '2.850.000 €',
     sqm: 195,
     rooms: 4,
@@ -25,8 +25,8 @@ const listings: PropertyCardProps[] = [
     id: 2,
     ref_nr: 'MW-0087',
     title: 'Elegante Stadtvilla mit privatem Garten und Pool',
-    location: 'München',
-    district: 'Bogenhausen',
+    location: 'Essen',
+    district: 'Bredeney',
     price: '4.200.000 €',
     sqm: 320,
     rooms: 7,
@@ -38,9 +38,9 @@ const listings: PropertyCardProps[] = [
   {
     id: 3,
     ref_nr: 'MW-0083',
-    title: 'Repräsentatives Stadthaus mit Dachterrasse im Lehel',
-    location: 'München',
-    district: 'Lehel',
+    title: 'Repräsentatives Stadthaus mit Dachterrasse im Stadtmitte',
+    location: 'Essen',
+    district: 'Stadtmitte',
     price: '3.490.000 €',
     sqm: 248,
     rooms: 6,
@@ -56,7 +56,7 @@ export default function FeaturedListings() {
   const isInView = useInView(ref, { once: true, margin: '-80px' })
 
   return (
-    <section id="angebote" className="bg-cream border-t border-grey-200">
+    <section id="angebote" className="bg-sand border-t border-grey-200">
 
       {/* ── Header ─────────────────────────────── */}
       <div ref={ref} className="max-w-screen-2xl mx-auto px-5 lg:px-12 pt-16 pb-10 border-b border-grey-200">
@@ -68,10 +68,10 @@ export default function FeaturedListings() {
         >
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-6 h-px bg-gold" />
-              <p className="label text-gold">Handverlesene Objekte</p>
+              <div className="w-6 h-px bg-taupe" />
+              <p className="label text-taupe">Handverlesene Objekte</p>
             </div>
-            <h2 className="display-lg text-navy">Aktuelle Angebote</h2>
+            <h2 className="display-lg text-brown">Aktuelle Angebote</h2>
           </div>
           <p className="font-sans text-base text-grey-500 max-w-xs leading-relaxed">
             Eine Auswahl exklusiver Wohnimmobilien aus unserem aktuellen Portfolio.
@@ -98,7 +98,7 @@ export default function FeaturedListings() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: i * 0.1, duration: 0.6 }}
-              className="bg-cream"
+              className="bg-sand"
             >
               <PropertyCard {...property} />
             </motion.div>
@@ -112,14 +112,14 @@ export default function FeaturedListings() {
           initial={{ opacity: 0, y: 16 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.4, duration: 0.6 }}
-          className="bg-navy px-8 py-10 lg:py-12 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6"
+          className="bg-brown px-8 py-10 lg:py-12 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6"
         >
           <div>
-            <p className="label text-gold mb-3">Off-Market Angebote</p>
-            <h3 className="font-display text-[clamp(1.8rem,3vw,3rem)] font-light text-cream leading-tight mb-2">
+            <p className="label text-taupe mb-3">Off-Market Angebote</p>
+            <h3 className="font-display text-[clamp(1.8rem,3vw,3rem)] font-light text-sand leading-tight mb-2">
               Exklusive Objekte, die nie öffentlich inseriert werden.
             </h3>
-            <p className="font-sans text-[15px] text-cream/60 max-w-md leading-relaxed">
+            <p className="font-sans text-[15px] text-sand/60 max-w-md leading-relaxed">
               Für vorgemerkte Kaufinteressenten pflegen wir einen diskreten Zugang zu Immobilien, die außerhalb der üblichen Portale vermarktet werden.
             </p>
           </div>

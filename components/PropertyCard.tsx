@@ -28,7 +28,7 @@ export default function PropertyCard(p: PropertyCardProps) {
 
   return (
     <article
-      className="group bg-paper border border-grey-200 overflow-hidden cursor-pointer"
+      className="group bg-sand border border-grey-200 overflow-hidden cursor-pointer"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
@@ -54,14 +54,14 @@ export default function PropertyCard(p: PropertyCardProps) {
         <div className="absolute top-0 left-0 right-0 flex justify-between p-4">
           <div className="flex gap-1.5">
             {p.isNew && (
-              <span className="label bg-paper text-ink px-3 py-1.5">Neu</span>
+              <span className="label bg-sand text-ink px-3 py-1.5">Neu</span>
             )}
             {p.isExclusive && (
               <span className="label bg-ink text-paper px-3 py-1.5">Exklusiv</span>
             )}
           </div>
           <span className={`label px-3 py-1.5 ${
-            p.type === 'Kaufen' ? 'bg-ink text-paper' : 'bg-paper text-ink'
+            p.type === 'Kaufen' ? 'bg-ink text-paper' : 'bg-sand text-ink'
           }`}>
             {p.type}
           </span>
@@ -85,7 +85,7 @@ export default function PropertyCard(p: PropertyCardProps) {
                           py-4 label transition-colors duration-200 ${
                             saved
                               ? 'bg-grey-200 text-ink'
-                              : 'bg-paper text-ink hover:bg-ink hover:text-paper'
+                              : 'bg-sand text-ink hover:bg-ink hover:text-paper'
                           }`}
             >
               {saved ? (

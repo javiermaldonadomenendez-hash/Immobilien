@@ -38,10 +38,10 @@ export default function Navbar() {
   }, [menuOpen])
 
   const navBg = scrolled
-    ? 'bg-cream/95 backdrop-blur-sm border-b border-grey-200'
+    ? 'bg-sand/95 backdrop-blur-sm border-b border-grey-200'
     : 'bg-transparent border-b border-white/10'
 
-  const textCol = scrolled ? 'text-navy' : 'text-cream'
+  const textCol = scrolled ? 'text-brown' : 'text-sand'
 
   return (
     <>
@@ -68,7 +68,7 @@ export default function Navbar() {
                 key={l.label}
                 href={l.href}
                 className={`label transition-colors ${
-                  scrolled ? 'text-grey-500 hover:text-navy' : 'text-white/60 hover:text-white'
+                  scrolled ? 'text-grey-500 hover:text-brown' : 'text-white/60 hover:text-white'
                 }`}
               >
                 {l.label}
@@ -82,8 +82,8 @@ export default function Navbar() {
               href="#bewertung"
               className={`hidden lg:inline-flex items-center gap-2 px-5 py-2.5 label transition-colors duration-200 ${
                 scrolled
-                  ? 'bg-gold text-cream hover:bg-gold-dark'
-                  : 'bg-gold/90 text-cream hover:bg-gold'
+                  ? 'bg-taupe text-sand hover:bg-taupe-dark'
+                  : 'bg-taupe/90 text-sand hover:bg-taupe'
               }`}
             >
               Kostenlos bewerten
@@ -94,8 +94,8 @@ export default function Navbar() {
               className={`flex flex-col gap-[5px] group p-1 ${textCol}`}
               aria-label="Menü öffnen"
             >
-              <span className={`block w-6 h-px transition-colors ${scrolled ? 'bg-navy' : 'bg-white'} group-hover:opacity-60`} />
-              <span className={`block w-4 h-px transition-colors ${scrolled ? 'bg-navy' : 'bg-white'} group-hover:opacity-60`} />
+              <span className={`block w-6 h-px transition-colors ${scrolled ? 'bg-brown' : 'bg-white'} group-hover:opacity-60`} />
+              <span className={`block w-4 h-px transition-colors ${scrolled ? 'bg-brown' : 'bg-white'} group-hover:opacity-60`} />
             </button>
           </div>
         </div>
@@ -109,20 +109,20 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
-            className="fixed inset-0 z-[100] bg-cream flex flex-col"
+            className="fixed inset-0 z-[100] bg-sand flex flex-col"
           >
             {/* Top bar */}
             <div className="flex items-center justify-between px-5 lg:px-12 h-16 border-b border-grey-200">
               <Link
                 href="/"
                 onClick={() => setMenuOpen(false)}
-                className="font-display text-2xl font-light tracking-wide text-navy"
+                className="font-display text-2xl font-light tracking-wide text-brown"
               >
                 Maldonado Winz
               </Link>
               <button
                 onClick={() => setMenuOpen(false)}
-                className="text-grey-400 hover:text-navy transition-colors p-2"
+                className="text-grey-400 hover:text-brown transition-colors p-2"
                 aria-label="Menü schließen"
               >
                 <X size={20} strokeWidth={1.5} />
@@ -133,7 +133,7 @@ export default function Navbar() {
             <div className="flex-1 flex flex-col lg:flex-row overflow-auto">
               {/* Primary */}
               <div className="flex-1 px-5 lg:px-12 py-10 lg:py-16 border-b lg:border-b-0 lg:border-r border-grey-200">
-                <p className="label mb-8 text-gold">Navigation</p>
+                <p className="label mb-8 text-taupe">Navigation</p>
                 <nav className="space-y-1">
                   {primaryLinks.map((l, i) => (
                     <motion.div
@@ -146,11 +146,11 @@ export default function Navbar() {
                         href={l.href}
                         onClick={() => setMenuOpen(false)}
                         className="group flex items-center justify-between py-4 border-b border-grey-100
-                                   font-display text-[clamp(2.5rem,8vw,5rem)] font-light text-navy
-                                   hover:text-gold transition-colors duration-200"
+                                   font-display text-[clamp(2.5rem,8vw,5rem)] font-light text-brown
+                                   hover:text-taupe transition-colors duration-200"
                       >
                         {l.label}
-                        <Plus size={18} className="text-grey-300 group-hover:rotate-45 group-hover:text-gold transition-all duration-300" />
+                        <Plus size={18} className="text-grey-300 group-hover:rotate-45 group-hover:text-taupe transition-all duration-300" />
                       </Link>
                     </motion.div>
                   ))}
@@ -160,14 +160,14 @@ export default function Navbar() {
               {/* Sub-links + info */}
               <div className="lg:w-80 px-5 lg:px-10 py-10 lg:py-16 flex flex-col gap-10">
                 <div>
-                  <p className="label mb-6 text-gold">Leistungen</p>
+                  <p className="label mb-6 text-taupe">Leistungen</p>
                   <div className="space-y-3">
                     {serviceLinks.map((s) => (
                       <Link
                         key={s.label}
                         href={s.href}
                         onClick={() => setMenuOpen(false)}
-                        className="block label text-grey-500 hover:text-navy transition-colors py-1"
+                        className="block label text-grey-500 hover:text-brown transition-colors py-1"
                       >
                         {s.label}
                       </Link>
@@ -175,17 +175,17 @@ export default function Navbar() {
                   </div>
                 </div>
                 <div>
-                  <p className="label mb-4 text-gold">Direktkontakt</p>
+                  <p className="label mb-4 text-taupe">Direktkontakt</p>
                   <a
                     href="tel:+498912345678"
-                    className="flex items-center gap-2 font-sans text-sm text-navy font-medium mb-1 hover:text-gold transition-colors"
+                    className="flex items-center gap-2 font-sans text-sm text-brown font-medium mb-1 hover:text-taupe transition-colors"
                   >
                     <Phone size={14} />
                     +49 89 1234 5678
                   </a>
                   <p className="font-sans text-sm text-grey-500 leading-relaxed">
-                    Maximilianstraße 12<br />
-                    80539 München
+                    Rüttenscheider Str. 52<br />
+                    45130 Essen
                   </p>
                 </div>
                 <Link

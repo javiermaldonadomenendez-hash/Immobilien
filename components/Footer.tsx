@@ -28,24 +28,24 @@ const socials = [
 
 export default function Footer() {
   return (
-    <footer className="bg-navy text-cream">
+    <footer className="bg-brown text-sand">
 
       {/* ── CTA strip ──────────────────────────── */}
-      <div className="border-b border-navy-800">
+      <div className="border-b border-brown-800">
         <div className="max-w-screen-2xl mx-auto px-5 lg:px-12 py-20
                         flex flex-col lg:flex-row items-start lg:items-end justify-between gap-10">
           <div>
-            <p className="label text-gold mb-6">Bereit für den nächsten Schritt?</p>
-            <h3 className="font-display text-[clamp(3rem,7vw,7rem)] font-light leading-[0.92] text-cream">
+            <p className="label text-taupe mb-6">Bereit für den nächsten Schritt?</p>
+            <h3 className="font-display text-[clamp(3rem,7vw,7rem)] font-light leading-[0.92] text-sand">
               Immobilie<br />
-              <span className="text-gold">kostenlos</span><br />
+              <span className="text-taupe">kostenlos</span><br />
               bewerten
             </h3>
           </div>
           <Link
             href="#bewertung"
-            className="group flex items-center gap-3 bg-gold px-8 py-4
-                       label text-cream hover:bg-gold-dark
+            className="group flex items-center gap-3 bg-taupe px-8 py-4
+                       label text-sand hover:bg-taupe-dark
                        transition-colors duration-300 flex-shrink-0 min-h-[48px]"
           >
             Wert ermitteln
@@ -59,16 +59,16 @@ export default function Footer() {
 
       {/* ── Main columns ───────────────────────── */}
       <div className="max-w-screen-2xl mx-auto px-5 lg:px-12 py-16">
-        <div className="grid grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-0 lg:divide-x lg:divide-navy-800">
+        <div className="grid grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-0 lg:divide-x lg:divide-brown-800">
 
           {/* Brand */}
           <div className="col-span-2 lg:col-span-2 lg:pr-12">
-            <p className="font-display text-3xl font-light tracking-wide text-cream mb-2">
+            <p className="font-display text-3xl font-light tracking-wide text-sand mb-2">
               Maldonado Winz
             </p>
-            <p className="label text-gold mb-4">Immobilien</p>
-            <p className="font-sans text-sm text-cream/40 leading-relaxed max-w-xs mb-8">
-              Boutique-Makler für hochwertige Wohnimmobilien in München und der umliegenden Region.
+            <p className="label text-taupe mb-4">Immobilien</p>
+            <p className="font-sans text-sm text-sand/40 leading-relaxed max-w-xs mb-8">
+              Boutique-Makler für hochwertige Wohnimmobilien in Essen und dem Ruhrgebiet.
               Diskret. Kompetent. Auf Augenhöhe.
             </p>
             {/* Socials */}
@@ -77,7 +77,7 @@ export default function Footer() {
                 <a
                   key={s.label}
                   href={s.href}
-                  className="label text-cream/30 hover:text-gold transition-colors duration-200
+                  className="label text-sand/30 hover:text-taupe transition-colors duration-200
                              flex items-center gap-1 group"
                 >
                   {s.label}
@@ -98,13 +98,13 @@ export default function Footer() {
             { title: 'Rechtliches',  links: col3 },
           ].map((col) => (
             <div key={col.title} className="lg:px-10">
-              <p className="label text-gold mb-6">{col.title}</p>
+              <p className="label text-taupe mb-6">{col.title}</p>
               <ul className="space-y-3">
                 {col.links.map((l) => (
                   <li key={l.label}>
                     <Link
                       href={l.href}
-                      className="font-sans text-sm text-cream/40 hover:text-gold
+                      className="font-sans text-sm text-sand/40 hover:text-taupe
                                  transition-colors duration-200"
                     >
                       {l.label}
@@ -118,14 +118,14 @@ export default function Footer() {
       </div>
 
       {/* ── Bottom bar ─────────────────────────── */}
-      <div className="border-t border-navy-800">
+      <div className="border-t border-brown-800">
         <div className="max-w-screen-2xl mx-auto px-5 lg:px-12 py-5
                         flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="label text-cream/25">
-            © {new Date().getFullYear()} Maldonado Winz Immobilien GmbH · München
+          <p className="label text-sand/25">
+            © {new Date().getFullYear()} Maldonado Winz Immobilien GmbH · Essen
           </p>
-          <p className="label text-cream/15">
-            Schwabing · Bogenhausen · Lehel · Maxvorstadt · Herzogpark
+          <p className="label text-sand/15">
+            Rüttenscheid · Bredeney · Stadtmitte · Werden · Kettwig
           </p>
         </div>
       </div>

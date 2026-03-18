@@ -16,7 +16,7 @@ const topics = [
 const info = [
   { icon: Phone,  label: 'Telefon',     value: '+49 89 1234 5678',              href: 'tel:+498912345678' },
   { icon: Mail,   label: 'E-Mail',      value: 'info@maldonado-winz.de',        href: 'mailto:info@maldonado-winz.de' },
-  { icon: MapPin, label: 'Adresse',     value: 'Maximilianstraße 12\n80539 München', href: null },
+  { icon: MapPin, label: 'Adresse',     value: 'Rüttenscheider Str. 52\n45130 Essen', href: null },
   { icon: Clock,  label: 'Bürozeiten',  value: 'Mo–Fr 09–18 Uhr\nSa 10–14 Uhr', href: null },
 ]
 
@@ -27,12 +27,12 @@ export default function ContactForm() {
   const [topic, setTopic] = useState(topics[0])
   const [form, setForm] = useState({ name: '', email: '', phone: '', message: '' })
 
-  const fieldClass = `w-full bg-transparent border-b border-grey-200 focus:border-navy
-                      font-sans text-[15px] text-navy placeholder-grey-300 py-3 outline-none
+  const fieldClass = `w-full bg-transparent border-b border-grey-200 focus:border-brown
+                      font-sans text-[15px] text-brown placeholder-grey-300 py-3 outline-none
                       transition-colors duration-200`
 
   return (
-    <section id="kontakt" className="bg-cream border-t border-grey-200" ref={ref}>
+    <section id="kontakt" className="bg-sand border-t border-grey-200" ref={ref}>
 
       {/* ── Section header ─────────────────────── */}
       <div className="max-w-screen-2xl mx-auto px-5 lg:px-12 py-16 border-b border-grey-200">
@@ -44,10 +44,10 @@ export default function ContactForm() {
         >
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-6 h-px bg-gold" />
-              <p className="label text-gold">Wir sind für Sie da</p>
+              <div className="w-6 h-px bg-taupe" />
+              <p className="label text-taupe">Wir sind für Sie da</p>
             </div>
-            <h2 className="display-lg text-navy">Kontakt</h2>
+            <h2 className="display-lg text-brown">Kontakt</h2>
           </div>
           <p className="font-sans text-base text-grey-500 max-w-xs leading-relaxed">
             Antwort innerhalb von 24 Stunden — meist noch am selben Tag.
@@ -70,21 +70,21 @@ export default function ContactForm() {
               const Icon = item.icon
               return (
                 <div key={i} className="flex items-start gap-4">
-                  <div className="w-8 h-8 flex items-center justify-center border border-gold/30 flex-shrink-0 mt-0.5">
-                    <Icon size={14} strokeWidth={1.5} className="text-gold" />
+                  <div className="w-8 h-8 flex items-center justify-center border border-taupe/30 flex-shrink-0 mt-0.5">
+                    <Icon size={14} strokeWidth={1.5} className="text-taupe" />
                   </div>
                   <div>
-                    <p className="label text-gold mb-1">{item.label}</p>
+                    <p className="label text-taupe mb-1">{item.label}</p>
                     {item.href ? (
                       <a
                         href={item.href}
-                        className="font-sans text-[15px] text-navy whitespace-pre-line leading-relaxed
-                                   hover:text-gold transition-colors"
+                        className="font-sans text-[15px] text-brown whitespace-pre-line leading-relaxed
+                                   hover:text-taupe transition-colors"
                       >
                         {item.value}
                       </a>
                     ) : (
-                      <p className="font-sans text-[15px] text-navy whitespace-pre-line leading-relaxed">
+                      <p className="font-sans text-[15px] text-brown whitespace-pre-line leading-relaxed">
                         {item.value}
                       </p>
                     )}
@@ -106,8 +106,8 @@ export default function ContactForm() {
                 }}
               />
               <div className="absolute inset-0 flex flex-col items-center justify-center gap-2">
-                <div className="w-2 h-2 bg-gold" />
-                <p className="label text-navy/50">Maximilianstraße 12, München</p>
+                <div className="w-2 h-2 bg-taupe" />
+                <p className="label text-brown/50">Rüttenscheider Str. 52, Essen</p>
               </div>
             </div>
           </motion.div>
@@ -125,11 +125,11 @@ export default function ContactForm() {
                 animate={{ opacity: 1, scale: 1 }}
                 className="flex flex-col items-start gap-6 py-10"
               >
-                <div className="w-12 h-12 border-2 border-gold flex items-center justify-center">
-                  <Check size={18} strokeWidth={1.5} className="text-gold" />
+                <div className="w-12 h-12 border-2 border-taupe flex items-center justify-center">
+                  <Check size={18} strokeWidth={1.5} className="text-taupe" />
                 </div>
                 <div>
-                  <h3 className="font-display text-4xl font-light text-navy mb-2">Vielen Dank.</h3>
+                  <h3 className="font-display text-4xl font-light text-brown mb-2">Vielen Dank.</h3>
                   <p className="font-sans text-[15px] text-grey-500 leading-relaxed">
                     Ihre Nachricht ist bei uns eingegangen. Wir melden uns schnellstmöglich bei Ihnen.
                   </p>
@@ -142,7 +142,7 @@ export default function ContactForm() {
               >
                 {/* Topic selector */}
                 <div>
-                  <p className="label text-gold mb-4">Ihr Anliegen</p>
+                  <p className="label text-taupe mb-4">Ihr Anliegen</p>
                   <div className="flex flex-wrap gap-2">
                     {topics.map((t) => (
                       <button
@@ -151,8 +151,8 @@ export default function ContactForm() {
                         onClick={() => setTopic(t)}
                         className={`px-4 py-2.5 label transition-colors duration-200 border min-h-[44px] ${
                           topic === t
-                            ? 'bg-navy text-cream border-navy'
-                            : 'text-grey-400 border-grey-200 hover:border-navy hover:text-navy'
+                            ? 'bg-brown text-sand border-brown'
+                            : 'text-grey-400 border-grey-200 hover:border-brown hover:text-brown'
                         }`}
                       >
                         {t}
@@ -164,7 +164,7 @@ export default function ContactForm() {
                 {/* Fields */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                   <div>
-                    <label className="label text-gold block mb-2">Name *</label>
+                    <label className="label text-taupe block mb-2">Name *</label>
                     <input
                       type="text" required
                       value={form.name}
@@ -174,7 +174,7 @@ export default function ContactForm() {
                     />
                   </div>
                   <div>
-                    <label className="label text-gold block mb-2">E-Mail *</label>
+                    <label className="label text-taupe block mb-2">E-Mail *</label>
                     <input
                       type="email" required
                       value={form.email}
@@ -186,7 +186,7 @@ export default function ContactForm() {
                 </div>
 
                 <div>
-                  <label className="label text-gold block mb-2">Telefon (optional)</label>
+                  <label className="label text-taupe block mb-2">Telefon (optional)</label>
                   <input
                     type="tel"
                     value={form.phone}
@@ -197,7 +197,7 @@ export default function ContactForm() {
                 </div>
 
                 <div>
-                  <label className="label text-gold block mb-2">Nachricht *</label>
+                  <label className="label text-taupe block mb-2">Nachricht *</label>
                   <textarea
                     required
                     value={form.message}
@@ -211,7 +211,7 @@ export default function ContactForm() {
                 <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-2">
                   <p className="font-sans text-[11px] text-grey-300">
                     Mit Absenden stimmen Sie der{' '}
-                    <a href="#" className="underline hover:text-navy transition-colors">
+                    <a href="#" className="underline hover:text-brown transition-colors">
                       Datenschutzerklärung
                     </a>{' '}
                     zu.

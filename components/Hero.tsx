@@ -15,7 +15,7 @@ export default function Hero() {
   const fadeOut = useTransform(scrollYProgress, [0, 0.55], [1, 0])
 
   return (
-    <section ref={ref} className="relative h-screen min-h-[700px] max-h-[1100px] overflow-hidden bg-navy flex flex-col">
+    <section ref={ref} className="relative h-screen min-h-[700px] max-h-[1100px] overflow-hidden bg-brown flex flex-col">
 
       {/* ── Background image (parallax) ───────────── */}
       <motion.div className="absolute inset-0" style={{ y: imgY }}>
@@ -30,14 +30,14 @@ export default function Hero() {
       </motion.div>
 
       {/* ── Subtle gradient overlay ─────────────── */}
-      <div className="absolute inset-0 bg-gradient-to-b from-navy/30 via-transparent to-navy/70 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-b from-brown/30 via-transparent to-brown/70 pointer-events-none" />
 
       {/* ── Gold accent line – right ─────────────── */}
       <div className="absolute right-8 top-1/2 -translate-y-1/2 z-10 hidden lg:flex flex-col items-center gap-3">
         <span className="font-sans text-[10px] font-medium uppercase tracking-[0.35em] text-white/30 [writing-mode:vertical-lr]">
-          München · Bayern · Deutschland
+          Essen · Ruhrgebiet · NRW
         </span>
-        <div className="w-px h-16 bg-gold/40" />
+        <div className="w-px h-16 bg-taupe/40" />
       </div>
 
       {/* ── Main content ─────────────────────────── */}
@@ -52,9 +52,9 @@ export default function Hero() {
           transition={{ delay: 0.3, duration: 0.7 }}
           className="flex items-center gap-3 mb-8"
         >
-          <div className="w-8 h-px bg-gold" />
-          <span className="font-sans text-[11px] font-medium uppercase tracking-[0.25em] text-gold">
-            Boutique Immobilienmakler · München
+          <div className="w-8 h-px bg-taupe" />
+          <span className="font-sans text-[11px] font-medium uppercase tracking-[0.25em] text-taupe">
+            Boutique Immobilienmakler · Essen
           </span>
         </motion.div>
 
@@ -64,7 +64,7 @@ export default function Hero() {
             initial={{ y: '100%' }}
             animate={{ y: 0 }}
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            className="font-display font-light text-cream leading-[0.92]
+            className="font-display font-light text-sand leading-[0.92]
                        text-[clamp(4rem,11vw,10.5rem)]"
           >
             Werte verstehen.
@@ -75,7 +75,7 @@ export default function Hero() {
             initial={{ y: '100%' }}
             animate={{ y: 0 }}
             transition={{ delay: 0.08, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            className="font-display font-light text-cream/60 leading-[0.92]
+            className="font-display font-light text-sand/60 leading-[0.92]
                        text-[clamp(4rem,11vw,10.5rem)]"
           >
             Immobilien gestalten.
@@ -90,12 +90,12 @@ export default function Hero() {
           className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 lg:gap-12"
         >
           <div className="max-w-sm">
-            <p className="font-sans text-cream/70 text-base font-light leading-relaxed mb-2">
+            <p className="font-sans text-sand/70 text-base font-light leading-relaxed mb-2">
               Diskrete Vermarktung. Tiefgreifende Beratung. Maximaler Erlös.
             </p>
             <div className="flex items-center gap-2 font-sans text-[11px] text-white/40 uppercase tracking-widest">
               <MapPin size={11} />
-              Spezialisiert auf Premium-Wohnimmobilien in München
+              Spezialisiert auf Premium-Wohnimmobilien in Essen
             </div>
           </div>
 
@@ -118,7 +118,7 @@ export default function Hero() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.9, duration: 0.6 }}
-        className="relative z-10 bg-cream/95 backdrop-blur-sm border-t border-grey-200"
+        className="relative z-10 bg-sand/95 backdrop-blur-sm border-t border-grey-200"
       >
         <div className="max-w-screen-2xl mx-auto px-5 lg:px-12">
           <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-grey-200">
@@ -129,7 +129,7 @@ export default function Hero() {
               { value: '4,9',   label: 'Google-Bewertung' },
             ].map((item) => (
               <div key={item.label} className="px-6 py-5 text-center">
-                <p className="font-display text-2xl font-medium text-navy leading-none mb-1">
+                <p className="font-display text-2xl font-medium text-brown leading-none mb-1">
                   {item.value}
                 </p>
                 <p className="font-sans text-[10px] uppercase tracking-widest text-grey-400">
