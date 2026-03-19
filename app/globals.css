@@ -79,6 +79,11 @@
            tracking-[0.2em] uppercase text-grey-400 hover:text-brown
            transition-colors duration-200;
   }
+  .btn-gold {
+    @apply inline-flex items-center gap-3 bg-taupe text-sand px-8 py-4
+           font-sans text-[11px] font-semibold tracking-[0.2em] uppercase
+           hover:bg-taupe-dark transition-colors duration-200 min-h-[48px];
+  }
 
   /* ─── Accent line ────────────────────────────────── */
   .accent-line {

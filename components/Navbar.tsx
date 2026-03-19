@@ -27,31 +27,35 @@ const serviceLinks = [
   { href: '#angebote',   label: 'Suchauftrag anlegen' },
 ]
 
+const BRAND_NAME = 'Maldonado & Winz'
+
+// Nav-Link-Klasse: weniger tracking als .label für kompaktere Navbar
+const navLinkBase = 'font-sans text-[10.5px] font-medium uppercase tracking-[0.13em] transition-colors duration-200 whitespace-nowrap'
+
 function openBewertungWizard() {
   document.dispatchEvent(new CustomEvent('open-bewertung-wizard'))
 }
-
-// Einheitliche Nav-Link-Klasse: weniger tracking als .label, schlanker
-const navLinkBase = 'font-sans text-[10.5px] font-medium uppercase tracking-[0.13em] transition-colors duration-200 whitespace-nowrap'
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60)
+    // Guard: only update state when value actually changes → avoids re-renders on every scroll event
+    const onScroll = () => {
+      const next = window.scrollY > 60
+      setScrolled(prev => prev === next ? prev : next)
+    }
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
   useEffect(() => {
-    document.body.style.overflow = menuOpen ? 'hidden' : ''
-    return () => { document.body.style.overflow = '' }
+    document.body.style.overflow = menuOpen ? 'hidden' : 'auto'
+    return () => { document.body.style.overflow = 'auto' }
   }, [menuOpen])
 
-  const scrolledLink = 'text-grey-600 hover:text-brown'
-  const transparentLink = 'text-white/55 hover:text-white'
-  const linkCls = scrolled ? scrolledLink : transparentLink
+  const linkCls = scrolled ? 'text-grey-600 hover:text-brown' : 'text-white/55 hover:text-white'
 
   return (
     <>
@@ -80,7 +84,7 @@ export default function Navbar() {
                 scrolled ? 'text-brown' : 'text-white'
               }`}
             >
-              Maldonado &amp; Winz
+              {BRAND_NAME}
             </Link>
             {/* Desktop: Nav-Links */}
             <nav className="hidden lg:flex items-center gap-6">
@@ -100,7 +104,7 @@ export default function Navbar() {
             }`}
           >
             <span className="font-display text-[20px] font-semibold tracking-[-0.01em] leading-none whitespace-nowrap">
-              Maldonado &amp; Winz
+              {BRAND_NAME}
             </span>
             <span className={`hidden lg:block font-sans text-[8.5px] tracking-[0.28em] mt-[5px] whitespace-nowrap ${
               scrolled ? 'text-taupe' : 'text-white/45'
@@ -120,7 +124,7 @@ export default function Navbar() {
             </nav>
             <button
               onClick={openBewertungWizard}
-              className={`hidden lg:inline-flex items-center px-5 py-[9px] font-sans text-[10px] font-semibold uppercase tracking-[0.15em] transition-colors duration-200 ${
+              className={`hidden lg:inline-flex items-center px-5 py-[9px] font-sans text-[10.5px] font-semibold uppercase tracking-[0.13em] transition-colors duration-200 ${
                 scrolled
                   ? 'bg-taupe text-sand hover:bg-taupe-dark'
                   : 'bg-taupe/85 text-sand hover:bg-taupe'
@@ -157,7 +161,7 @@ export default function Navbar() {
                 onClick={() => setMenuOpen(false)}
                 className="font-display text-xl font-light tracking-wide text-brown"
               >
-                Maldonado &amp; Winz
+                {BRAND_NAME}
               </Link>
               <button
                 onClick={() => setMenuOpen(false)}
