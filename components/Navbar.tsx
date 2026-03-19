@@ -29,8 +29,8 @@ const serviceLinks = [
 
 const BRAND_NAME = 'Maldonado & Winz'
 
-// Nav-Link-Klasse: weniger tracking als .label für kompaktere Navbar
-const navLinkBase = 'font-sans text-[10.5px] font-medium uppercase tracking-[0.13em] transition-colors duration-200 whitespace-nowrap'
+// Nav-Link-Klasse: Mixed Case, normal weight – wie Volmer & Bönnen
+const navLinkBase = 'font-sans text-[14px] font-normal tracking-[0.01em] transition-colors duration-200 whitespace-nowrap'
 
 function openBewertungWizard() {
   document.dispatchEvent(new CustomEvent('open-bewertung-wizard'))
@@ -60,7 +60,7 @@ export default function Navbar() {
   return (
     <>
       <motion.header
-        initial={{ y: -60 }}
+        initial={{ y: -76 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -71,7 +71,7 @@ export default function Navbar() {
       >
         {/* ── Grid: [1fr] [auto] [1fr] → mathematisch exakte Zentrierung ── */}
         <div
-          className="max-w-screen-2xl mx-auto px-6 lg:px-14 h-[60px] grid items-center"
+          className="max-w-screen-2xl mx-auto px-6 lg:px-16 h-[76px] grid items-center"
           style={{ gridTemplateColumns: '1fr auto 1fr' }}
         >
 
@@ -79,7 +79,7 @@ export default function Navbar() {
           <div className="flex items-center lg:justify-end">
             <Link
               href="/"
-              className={`lg:hidden font-display text-[17px] font-light tracking-[0.04em] transition-opacity hover:opacity-70 ${
+              className={`lg:hidden font-display text-[22px] font-bold tracking-[-0.02em] transition-opacity hover:opacity-70 ${
                 scrolled ? 'text-brown' : 'text-white'
               }`}
             >
@@ -101,11 +101,11 @@ export default function Navbar() {
               scrolled ? 'text-brown' : 'text-white'
             }`}
           >
-            <span className="font-display text-[20px] font-semibold tracking-[-0.01em] leading-none whitespace-nowrap">
+            <span className="font-display text-[30px] font-bold tracking-[-0.02em] leading-none whitespace-nowrap">
               {BRAND_NAME}
             </span>
-            <span className={`hidden lg:block font-sans text-[8.5px] tracking-[0.28em] mt-[5px] whitespace-nowrap ${
-              scrolled ? 'text-taupe' : 'text-white/45'
+            <span className={`hidden lg:block font-sans text-[9px] font-medium tracking-[0.3em] mt-[6px] whitespace-nowrap ${
+              scrolled ? 'text-taupe' : 'text-white/50'
             }`}>
               IMMOBILIEN
             </span>
@@ -123,7 +123,7 @@ export default function Navbar() {
             <div className="ml-auto flex items-center gap-4">
               <button
                 onClick={openBewertungWizard}
-                className={`hidden lg:inline-flex items-center px-5 py-[9px] font-sans text-[10.5px] font-semibold uppercase tracking-[0.13em] transition-colors duration-200 ${
+                className={`hidden lg:inline-flex items-center px-5 py-[9px] font-sans text-[13px] font-medium tracking-[0.02em] transition-colors duration-200 ${
                   scrolled
                     ? 'bg-taupe text-sand hover:bg-taupe-dark'
                     : 'bg-taupe/85 text-sand hover:bg-taupe'
@@ -155,7 +155,7 @@ export default function Navbar() {
             className="fixed inset-0 z-[100] bg-sand flex flex-col"
           >
             {/* Top bar */}
-            <div className="flex items-center justify-between px-6 lg:px-14 h-[60px] border-b border-grey-200">
+            <div className="flex items-center justify-between px-6 lg:px-16 h-[76px] border-b border-grey-200">
               <Link
                 href="/"
                 onClick={() => setMenuOpen(false)}
