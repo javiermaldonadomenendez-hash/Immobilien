@@ -66,8 +66,10 @@ export default function Navbar() {
         }`}
       >
         {/* ── Grid: [1fr] [auto] [1fr] → mathematisch exakte Zentrierung ── */}
-        <div className="max-w-screen-2xl mx-auto px-6 lg:px-14 h-[60px]
-                        grid grid-cols-[1fr_auto_1fr] lg:grid-cols-[1fr_auto_1fr] items-center">
+        <div
+          className="max-w-screen-2xl mx-auto px-6 lg:px-14 h-[60px] grid items-center"
+          style={{ gridTemplateColumns: '1fr auto 1fr' }}
+        >
 
           {/* COL 1 – Left nav (desktop) / Mobile brand (mobile) */}
           <div className="flex items-center">
