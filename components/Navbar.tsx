@@ -6,22 +6,18 @@ import Link from 'next/link'
 import { X, Plus, Phone } from 'lucide-react'
 
 const leftLinks = [
-  { href: '/',             label: 'Start' },
-  { href: '#leistungen',   label: 'Für Eigentümer' },
-  { href: '#angebote',     label: 'Immobilienangebote' },
+  { href: '/',           label: 'Start' },
+  { href: '#leistungen', label: 'Für Eigentümer' },
+  { href: '#angebote',   label: 'Immobilienangebote' },
 ]
 
 const rightLinks = [
-  { href: '#bewertung',    label: 'Bewertung' },
-  { href: '#ueber-uns',    label: 'Über uns' },
-  { href: '#kontakt',      label: 'Kontakt' },
+  { href: '#bewertung',  label: 'Bewertung' },
+  { href: '#ueber-uns',  label: 'Über uns' },
+  { href: '#kontakt',    label: 'Kontakt' },
 ]
 
 const primaryLinks = [...leftLinks, ...rightLinks]
-
-function openBewertungWizard() {
-  document.dispatchEvent(new CustomEvent('open-bewertung-wizard'))
-}
 
 const serviceLinks = [
   { href: '#leistungen', label: 'Immobilie verkaufen' },
@@ -31,12 +27,19 @@ const serviceLinks = [
   { href: '#angebote',   label: 'Suchauftrag anlegen' },
 ]
 
+function openBewertungWizard() {
+  document.dispatchEvent(new CustomEvent('open-bewertung-wizard'))
+}
+
+// Einheitliche Nav-Link-Klasse: weniger tracking als .label, schlanker
+const navLinkBase = 'font-sans text-[10.5px] font-medium uppercase tracking-[0.13em] transition-colors duration-200 whitespace-nowrap'
+
 export default function Navbar() {
-  const [scrolled, setScrolled]   = useState(false)
-  const [menuOpen, setMenuOpen]   = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 80)
+    const onScroll = () => setScrolled(window.scrollY > 60)
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
@@ -46,136 +49,137 @@ export default function Navbar() {
     return () => { document.body.style.overflow = '' }
   }, [menuOpen])
 
-  const navBg = scrolled
-    ? 'bg-sand/95 backdrop-blur-sm border-b border-grey-200'
-    : 'bg-transparent border-b border-white/10'
-
-  const textCol = scrolled ? 'text-brown' : 'text-sand'
+  const scrolledLink = 'text-grey-600 hover:text-brown'
+  const transparentLink = 'text-white/55 hover:text-white'
+  const linkCls = scrolled ? scrolledLink : transparentLink
 
   return (
     <>
       <motion.header
-        initial={{ y: -64 }}
+        initial={{ y: -60 }}
         animate={{ y: 0 }}
-        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${navBg}`}
+        transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          scrolled
+            ? 'bg-sand/96 backdrop-blur-sm border-b border-grey-200/80'
+            : 'bg-transparent border-b border-white/8'
+        }`}
       >
-        <div className="max-w-screen-2xl mx-auto px-5 lg:px-12 h-16 flex items-center">
+        {/* ── Main bar: 3 columns – flex-1 | shrink-0 | flex-1 ── */}
+        <div className="max-w-screen-2xl mx-auto px-6 lg:px-14 h-[60px] flex items-center">
 
-          {/* Left nav (desktop) */}
-          <nav className="hidden lg:flex flex-1 items-center gap-8">
+          {/* LEFT – desktop nav */}
+          <nav className="hidden lg:flex flex-1 items-center gap-7">
             {leftLinks.map((l) => (
-              <Link
-                key={l.label}
-                href={l.href}
-                className={`label transition-colors ${
-                  scrolled ? 'text-grey-500 hover:text-brown' : 'text-white/60 hover:text-white'
-                }`}
-              >
+              <Link key={l.label} href={l.href} className={`${navLinkBase} ${linkCls}`}>
                 {l.label}
               </Link>
             ))}
           </nav>
 
-          {/* Brand – Mobile left-aligned */}
+          {/* CENTER – Brand (mobile: left-aligned; desktop: sandwiched between flex-1 cols) */}
           <Link
             href="/"
-            className={`lg:hidden font-display text-lg font-light tracking-wide ${textCol} hover:opacity-70 transition-opacity`}
+            className={`lg:hidden font-display text-[17px] font-light tracking-[0.04em] transition-opacity hover:opacity-70 ${
+              scrolled ? 'text-brown' : 'text-white'
+            }`}
           >
             Maldonado &amp; Winz
           </Link>
 
-          {/* Brand – Desktop center (between the two flex-1 sides) */}
           <Link
             href="/"
-            className={`hidden lg:flex flex-col items-center flex-shrink-0 px-8 hover:opacity-70 transition-opacity ${textCol}`}
+            className={`hidden lg:flex flex-col items-center flex-shrink-0 px-10 transition-opacity hover:opacity-70 ${
+              scrolled ? 'text-brown' : 'text-white'
+            }`}
           >
-            <span className="font-display text-xl font-semibold tracking-tight leading-none whitespace-nowrap">
+            <span className="font-display text-[20px] font-semibold tracking-[-0.01em] leading-none whitespace-nowrap">
               Maldonado &amp; Winz
             </span>
-            <span className={`text-[9px] tracking-[0.25em] mt-[4px] font-sans whitespace-nowrap ${scrolled ? 'text-taupe' : 'text-white/50'}`}>
+            <span className={`font-sans text-[8.5px] tracking-[0.28em] mt-[5px] whitespace-nowrap ${
+              scrolled ? 'text-taupe' : 'text-white/45'
+            }`}>
               IMMOBILIEN
             </span>
           </Link>
 
-          {/* Right: nav links + CTA + Hamburger – all in flex-1 justify-end */}
-          <div className="flex flex-1 items-center justify-end gap-5">
-            <div className="hidden lg:flex items-center gap-8 mr-3">
+          {/* RIGHT – nav + CTA + hamburger, all in flex-1 justify-end */}
+          <div className="flex flex-1 items-center justify-end gap-7">
+
+            {/* Desktop right links */}
+            <nav className="hidden lg:flex items-center gap-7">
               {rightLinks.map((l) => (
-                <Link
-                  key={l.label}
-                  href={l.href}
-                  className={`label transition-colors ${
-                    scrolled ? 'text-grey-500 hover:text-brown' : 'text-white/60 hover:text-white'
-                  }`}
-                >
+                <Link key={l.label} href={l.href} className={`${navLinkBase} ${linkCls}`}>
                   {l.label}
                 </Link>
               ))}
-            </div>
+            </nav>
+
+            {/* CTA – subtle separator via margin */}
             <button
               onClick={openBewertungWizard}
-              className={`hidden lg:inline-flex items-center gap-2 px-5 py-2.5 label transition-colors duration-200 ${
+              className={`hidden lg:inline-flex items-center px-5 py-[9px] font-sans text-[10px] font-semibold uppercase tracking-[0.15em] transition-colors duration-200 ${
                 scrolled
                   ? 'bg-taupe text-sand hover:bg-taupe-dark'
-                  : 'bg-taupe/90 text-sand hover:bg-taupe'
+                  : 'bg-taupe/85 text-sand hover:bg-taupe'
               }`}
             >
               Kostenlos bewerten
             </button>
 
+            {/* Hamburger */}
             <button
               onClick={() => setMenuOpen(true)}
-              className={`flex flex-col gap-[5px] group p-1 ${textCol}`}
               aria-label="Menü öffnen"
+              className="flex flex-col justify-center gap-[5px] p-1 group"
             >
-              <span className={`block w-6 h-px transition-colors ${scrolled ? 'bg-brown' : 'bg-white'} group-hover:opacity-60`} />
-              <span className={`block w-4 h-px transition-colors ${scrolled ? 'bg-brown' : 'bg-white'} group-hover:opacity-60`} />
+              <span className={`block w-[22px] h-px transition-colors ${scrolled ? 'bg-brown' : 'bg-white'} group-hover:opacity-50`} />
+              <span className={`block w-[14px] h-px transition-colors ${scrolled ? 'bg-brown' : 'bg-white'} group-hover:opacity-50`} />
             </button>
           </div>
         </div>
       </motion.header>
 
-      {/* ── Full-screen menu overlay ─────────────────── */}
+      {/* ── Full-screen overlay menu ─────────────────────── */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
+            transition={{ duration: 0.22 }}
             className="fixed inset-0 z-[100] bg-sand flex flex-col"
           >
             {/* Top bar */}
-            <div className="flex items-center justify-between px-5 lg:px-12 h-16 border-b border-grey-200">
+            <div className="flex items-center justify-between px-6 lg:px-14 h-[60px] border-b border-grey-200">
               <Link
                 href="/"
                 onClick={() => setMenuOpen(false)}
-                className="font-display text-2xl font-light tracking-wide text-brown"
+                className="font-display text-xl font-light tracking-wide text-brown"
               >
-                Maldonado Winz
+                Maldonado &amp; Winz
               </Link>
               <button
                 onClick={() => setMenuOpen(false)}
-                className="text-grey-400 hover:text-brown transition-colors p-2"
                 aria-label="Menü schließen"
+                className="text-grey-400 hover:text-brown transition-colors p-2"
               >
-                <X size={20} strokeWidth={1.5} />
+                <X size={18} strokeWidth={1.5} />
               </button>
             </div>
 
-            {/* Links */}
+            {/* Content */}
             <div className="flex-1 flex flex-col lg:flex-row overflow-auto">
-              {/* Primary */}
-              <div className="flex-1 px-5 lg:px-12 py-10 lg:py-16 border-b lg:border-b-0 lg:border-r border-grey-200">
+              {/* Primary links */}
+              <div className="flex-1 px-6 lg:px-14 py-10 lg:py-16 border-b lg:border-b-0 lg:border-r border-grey-200">
                 <p className="label mb-8 text-taupe">Navigation</p>
                 <nav className="space-y-1">
                   {primaryLinks.map((l, i) => (
                     <motion.div
                       key={l.label}
-                      initial={{ opacity: 0, x: -20 }}
+                      initial={{ opacity: 0, x: -16 }}
                       animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: i * 0.05, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                      transition={{ delay: i * 0.04, duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
                     >
                       <Link
                         href={l.href}
@@ -185,15 +189,15 @@ export default function Navbar() {
                                    hover:text-taupe transition-colors duration-200"
                       >
                         {l.label}
-                        <Plus size={18} className="text-grey-300 group-hover:rotate-45 group-hover:text-taupe transition-all duration-300" />
+                        <Plus size={16} className="text-grey-300 group-hover:rotate-45 group-hover:text-taupe transition-all duration-300" />
                       </Link>
                     </motion.div>
                   ))}
                 </nav>
               </div>
 
-              {/* Sub-links + info */}
-              <div className="lg:w-80 px-5 lg:px-10 py-10 lg:py-16 flex flex-col gap-10">
+              {/* Sub-links + contact */}
+              <div className="lg:w-80 px-6 lg:px-10 py-10 lg:py-16 flex flex-col gap-10">
                 <div>
                   <p className="label mb-6 text-taupe">Leistungen</p>
                   <div className="space-y-3">
@@ -215,7 +219,7 @@ export default function Navbar() {
                     href="tel:+498912345678"
                     className="flex items-center gap-2 font-sans text-sm text-brown font-medium mb-1 hover:text-taupe transition-colors"
                   >
-                    <Phone size={14} />
+                    <Phone size={13} />
                     +49 89 1234 5678
                   </a>
                   <p className="font-sans text-sm text-grey-500 leading-relaxed">
