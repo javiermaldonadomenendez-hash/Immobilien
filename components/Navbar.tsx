@@ -75,9 +75,8 @@ export default function Navbar() {
           style={{ gridTemplateColumns: '1fr auto 1fr' }}
         >
 
-          {/* COL 1 – Left nav (desktop) / Mobile brand (mobile) */}
-          <div className="flex items-center">
-            {/* Mobile: Brand-Name links */}
+          {/* COL 1 – Mobile: Brand links; Desktop: Nav rechtsbündig ans Logo */}
+          <div className="flex items-center lg:justify-end">
             <Link
               href="/"
               className={`lg:hidden font-display text-[17px] font-light tracking-[0.04em] transition-opacity hover:opacity-70 ${
@@ -86,7 +85,6 @@ export default function Navbar() {
             >
               {BRAND_NAME}
             </Link>
-            {/* Desktop: Nav-Links */}
             <nav className="hidden lg:flex items-center gap-6">
               {leftLinks.map((l) => (
                 <Link key={l.label} href={l.href} className={`${navLinkBase} ${linkCls}`}>
@@ -96,10 +94,10 @@ export default function Navbar() {
             </nav>
           </div>
 
-          {/* COL 2 – Logo (exakt zentriert durch grid-cols [1fr auto 1fr]) */}
+          {/* COL 2 – Logo: gleicher px-Abstand links und rechts = symmetrischer Gap zu beiden Navs */}
           <Link
             href="/"
-            className={`flex flex-col items-center px-8 transition-opacity hover:opacity-70 ${
+            className={`flex flex-col items-center px-10 transition-opacity hover:opacity-70 ${
               scrolled ? 'text-brown' : 'text-white'
             }`}
           >
@@ -113,8 +111,8 @@ export default function Navbar() {
             </span>
           </Link>
 
-          {/* COL 3 – Right nav + CTA + Hamburger */}
-          <div className="flex items-center justify-end gap-6">
+          {/* COL 3 – Desktop: Nav linksbündig ans Logo, CTA+Hamburger via ml-auto rechts */}
+          <div className="flex items-center">
             <nav className="hidden lg:flex items-center gap-6">
               {rightLinks.map((l) => (
                 <Link key={l.label} href={l.href} className={`${navLinkBase} ${linkCls}`}>
@@ -122,24 +120,26 @@ export default function Navbar() {
                 </Link>
               ))}
             </nav>
-            <button
-              onClick={openBewertungWizard}
-              className={`hidden lg:inline-flex items-center px-5 py-[9px] font-sans text-[10.5px] font-semibold uppercase tracking-[0.13em] transition-colors duration-200 ${
-                scrolled
-                  ? 'bg-taupe text-sand hover:bg-taupe-dark'
-                  : 'bg-taupe/85 text-sand hover:bg-taupe'
-              }`}
-            >
-              Kostenlos bewerten
-            </button>
-            <button
-              onClick={() => setMenuOpen(true)}
-              aria-label="Menü öffnen"
-              className="flex flex-col justify-center gap-[5px] p-1 group"
-            >
-              <span className={`block w-[22px] h-px transition-colors ${scrolled ? 'bg-brown' : 'bg-white'} group-hover:opacity-50`} />
-              <span className={`block w-[14px] h-px transition-colors ${scrolled ? 'bg-brown' : 'bg-white'} group-hover:opacity-50`} />
-            </button>
+            <div className="ml-auto flex items-center gap-4">
+              <button
+                onClick={openBewertungWizard}
+                className={`hidden lg:inline-flex items-center px-5 py-[9px] font-sans text-[10.5px] font-semibold uppercase tracking-[0.13em] transition-colors duration-200 ${
+                  scrolled
+                    ? 'bg-taupe text-sand hover:bg-taupe-dark'
+                    : 'bg-taupe/85 text-sand hover:bg-taupe'
+                }`}
+              >
+                Kostenlos bewerten
+              </button>
+              <button
+                onClick={() => setMenuOpen(true)}
+                aria-label="Menü öffnen"
+                className="flex flex-col justify-center gap-[5px] p-1 group"
+              >
+                <span className={`block w-[22px] h-px transition-colors ${scrolled ? 'bg-brown' : 'bg-white'} group-hover:opacity-50`} />
+                <span className={`block w-[14px] h-px transition-colors ${scrolled ? 'bg-brown' : 'bg-white'} group-hover:opacity-50`} />
+              </button>
+            </div>
           </div>
         </div>
       </motion.header>
