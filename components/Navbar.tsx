@@ -60,10 +60,10 @@ export default function Navbar() {
         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${navBg}`}
       >
-        <div className="max-w-screen-2xl mx-auto px-5 lg:px-12 h-16 relative flex items-center">
+        <div className="max-w-screen-2xl mx-auto px-5 lg:px-12 h-16 flex items-center">
 
-          {/* Left nav links */}
-          <nav className="hidden lg:flex items-center gap-8">
+          {/* Left nav (desktop) */}
+          <nav className="hidden lg:flex flex-1 items-center gap-8">
             {leftLinks.map((l) => (
               <Link
                 key={l.label}
@@ -77,20 +77,7 @@ export default function Navbar() {
             ))}
           </nav>
 
-          {/* Brand – absolute center relative to the header */}
-          <Link
-            href="/"
-            className={`hidden lg:flex flex-col items-center absolute left-1/2 -translate-x-1/2 whitespace-nowrap hover:opacity-70 transition-opacity ${textCol}`}
-          >
-            <span className="font-display text-xl font-semibold tracking-tight leading-none">
-              Maldonado &amp; Winz
-            </span>
-            <span className={`label text-[9px] tracking-[0.25em] mt-[3px] ${scrolled ? 'text-taupe' : 'text-white/50'}`}>
-              IMMOBILIEN
-            </span>
-          </Link>
-
-          {/* Mobile: brand left-aligned */}
+          {/* Brand – Mobile left-aligned */}
           <Link
             href="/"
             className={`lg:hidden font-display text-lg font-light tracking-wide ${textCol} hover:opacity-70 transition-opacity`}
@@ -98,9 +85,22 @@ export default function Navbar() {
             Maldonado &amp; Winz
           </Link>
 
-          {/* Right: nav links + CTA + Hamburger */}
-          <div className="ml-auto flex items-center gap-5">
-            <div className="hidden lg:flex items-center gap-8 mr-5">
+          {/* Brand – Desktop center (between the two flex-1 sides) */}
+          <Link
+            href="/"
+            className={`hidden lg:flex flex-col items-center flex-shrink-0 px-8 hover:opacity-70 transition-opacity ${textCol}`}
+          >
+            <span className="font-display text-xl font-semibold tracking-tight leading-none whitespace-nowrap">
+              Maldonado &amp; Winz
+            </span>
+            <span className={`text-[9px] tracking-[0.25em] mt-[4px] font-sans whitespace-nowrap ${scrolled ? 'text-taupe' : 'text-white/50'}`}>
+              IMMOBILIEN
+            </span>
+          </Link>
+
+          {/* Right: nav links + CTA + Hamburger – all in flex-1 justify-end */}
+          <div className="flex flex-1 items-center justify-end gap-5">
+            <div className="hidden lg:flex items-center gap-8 mr-3">
               {rightLinks.map((l) => (
                 <Link
                   key={l.label}
