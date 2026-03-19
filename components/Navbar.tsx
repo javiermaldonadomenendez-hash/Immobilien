@@ -80,9 +80,14 @@ export default function Navbar() {
           {/* Brand – absolute center relative to the header */}
           <Link
             href="/"
-            className={`hidden lg:block absolute left-1/2 -translate-x-1/2 font-display text-xl font-light tracking-wide whitespace-nowrap ${textCol} hover:opacity-70 transition-opacity`}
+            className={`hidden lg:flex flex-col items-center absolute left-1/2 -translate-x-1/2 whitespace-nowrap hover:opacity-70 transition-opacity ${textCol}`}
           >
-            Maldonado &amp; Winz Immobilien
+            <span className="font-display text-xl font-semibold tracking-tight leading-none">
+              Maldonado &amp; Winz
+            </span>
+            <span className={`label text-[9px] tracking-[0.25em] mt-[3px] ${scrolled ? 'text-taupe' : 'text-white/50'}`}>
+              IMMOBILIEN
+            </span>
           </Link>
 
           {/* Mobile: brand left-aligned */}
