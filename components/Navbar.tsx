@@ -65,57 +65,57 @@ export default function Navbar() {
             : 'bg-transparent border-b border-white/8'
         }`}
       >
-        {/* ── Main bar: 3 columns – flex-1 | shrink-0 | flex-1 ── */}
-        <div className="max-w-screen-2xl mx-auto px-6 lg:px-14 h-[60px] flex items-center">
+        {/* ── Grid: [1fr] [auto] [1fr] → mathematisch exakte Zentrierung ── */}
+        <div className="max-w-screen-2xl mx-auto px-6 lg:px-14 h-[60px]
+                        grid grid-cols-[1fr_auto_1fr] lg:grid-cols-[1fr_auto_1fr] items-center">
 
-          {/* LEFT – desktop nav */}
-          <nav className="hidden lg:flex flex-1 items-center gap-7">
-            {leftLinks.map((l) => (
-              <Link key={l.label} href={l.href} className={`${navLinkBase} ${linkCls}`}>
-                {l.label}
-              </Link>
-            ))}
-          </nav>
+          {/* COL 1 – Left nav (desktop) / Mobile brand (mobile) */}
+          <div className="flex items-center">
+            {/* Mobile: Brand-Name links */}
+            <Link
+              href="/"
+              className={`lg:hidden font-display text-[17px] font-light tracking-[0.04em] transition-opacity hover:opacity-70 ${
+                scrolled ? 'text-brown' : 'text-white'
+              }`}
+            >
+              Maldonado &amp; Winz
+            </Link>
+            {/* Desktop: Nav-Links */}
+            <nav className="hidden lg:flex items-center gap-6">
+              {leftLinks.map((l) => (
+                <Link key={l.label} href={l.href} className={`${navLinkBase} ${linkCls}`}>
+                  {l.label}
+                </Link>
+              ))}
+            </nav>
+          </div>
 
-          {/* CENTER – Brand (mobile: left-aligned; desktop: sandwiched between flex-1 cols) */}
+          {/* COL 2 – Logo (exakt zentriert durch grid-cols [1fr auto 1fr]) */}
           <Link
             href="/"
-            className={`lg:hidden font-display text-[17px] font-light tracking-[0.04em] transition-opacity hover:opacity-70 ${
-              scrolled ? 'text-brown' : 'text-white'
-            }`}
-          >
-            Maldonado &amp; Winz
-          </Link>
-
-          <Link
-            href="/"
-            className={`hidden lg:flex flex-col items-center flex-shrink-0 px-10 transition-opacity hover:opacity-70 ${
+            className={`flex flex-col items-center px-8 transition-opacity hover:opacity-70 ${
               scrolled ? 'text-brown' : 'text-white'
             }`}
           >
             <span className="font-display text-[20px] font-semibold tracking-[-0.01em] leading-none whitespace-nowrap">
               Maldonado &amp; Winz
             </span>
-            <span className={`font-sans text-[8.5px] tracking-[0.28em] mt-[5px] whitespace-nowrap ${
+            <span className={`hidden lg:block font-sans text-[8.5px] tracking-[0.28em] mt-[5px] whitespace-nowrap ${
               scrolled ? 'text-taupe' : 'text-white/45'
             }`}>
               IMMOBILIEN
             </span>
           </Link>
 
-          {/* RIGHT – nav + CTA + hamburger, all in flex-1 justify-end */}
-          <div className="flex flex-1 items-center justify-end gap-7">
-
-            {/* Desktop right links */}
-            <nav className="hidden lg:flex items-center gap-7">
+          {/* COL 3 – Right nav + CTA + Hamburger */}
+          <div className="flex items-center justify-end gap-6">
+            <nav className="hidden lg:flex items-center gap-6">
               {rightLinks.map((l) => (
                 <Link key={l.label} href={l.href} className={`${navLinkBase} ${linkCls}`}>
                   {l.label}
                 </Link>
               ))}
             </nav>
-
-            {/* CTA – subtle separator via margin */}
             <button
               onClick={openBewertungWizard}
               className={`hidden lg:inline-flex items-center px-5 py-[9px] font-sans text-[10px] font-semibold uppercase tracking-[0.15em] transition-colors duration-200 ${
@@ -126,8 +126,6 @@ export default function Navbar() {
             >
               Kostenlos bewerten
             </button>
-
-            {/* Hamburger */}
             <button
               onClick={() => setMenuOpen(true)}
               aria-label="Menü öffnen"
