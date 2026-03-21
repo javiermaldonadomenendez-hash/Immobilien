@@ -12,7 +12,7 @@ const services = [
     tag: 'Verkauf & Transaktion',
     desc: 'Mit datengestützter Preisstrategie, professioneller Aufbereitung und einem exklusiven Käufernetzwerk erzielen wir für Ihre Immobilie den bestmöglichen Erlös — diskret, strukturiert und verbindlich.',
     cta: 'Mehr erfahren',
-    href: '#leistungen',
+    href: '/leistungen',
     accent: true,
   },
   {
@@ -21,7 +21,7 @@ const services = [
     tag: 'Vermietungsmanufaktur',
     desc: 'Wir übernehmen den gesamten Vermietungsprozess: von der Vermarktung über die Mieterauswahl bis zum rechtssicheren Mietvertrag. Entlastung pur — mit passendem Mieter als Ergebnis.',
     cta: 'Mehr erfahren',
-    href: '#leistungen',
+    href: '/leistungen',
     accent: false,
   },
   {
@@ -30,7 +30,7 @@ const services = [
     tag: 'Marktwertermittlung',
     desc: 'Präzise Wertermittlung auf Basis aktueller Marktdaten, Lagebewertung und Vergleichsobjekten. Kostenlos und unverbindlich — als solide Grundlage für alle weiteren Entscheidungen.',
     cta: 'Wert ermitteln',
-    href: '#bewertung',
+    href: '/leistungen',
     accent: false,
   },
   {
@@ -39,7 +39,7 @@ const services = [
     tag: 'Käufer & Mieter',
     desc: 'Hinterlegen Sie Ihr Suchprofil und erhalten Sie frühzeitigen Zugang zu passenden Objekten — inklusive exklusiver Off-Market-Angebote, die nie öffentlich inseriert werden.',
     cta: 'Suchauftrag anlegen',
-    href: '#angebote',
+    href: '/leistungen',
     accent: false,
   },
 ]

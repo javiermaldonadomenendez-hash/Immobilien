@@ -6,31 +6,31 @@ import Link from 'next/link'
 import { X, Plus, Phone } from 'lucide-react'
 
 const leftLinks = [
-  { href: '/',           label: 'Start' },
-  { href: '#leistungen', label: 'Für Eigentümer' },
-  { href: '#angebote',   label: 'Immobilienangebote' },
+  { href: '/',            label: 'Start' },
+  { href: '/leistungen',  label: 'Für Eigentümer' },
+  { href: '/leistungen',  label: 'Immobilienangebote' },
 ]
 
 const rightLinks = [
-  { href: '#bewertung',  label: 'Bewertung' },
-  { href: '#ueber-uns',  label: 'Über uns' },
-  { href: '#kontakt',    label: 'Kontakt' },
+  { href: '/leistungen',  label: 'Bewertung' },
+  { href: '/ueber-uns',   label: 'Über uns' },
+  { href: '/kontakt',     label: 'Kontakt' },
 ]
 
 const primaryLinks = [...leftLinks, ...rightLinks]
 
 const serviceLinks = [
-  { href: '#leistungen', label: 'Immobilie verkaufen' },
-  { href: '#leistungen', label: 'Immobilie vermieten' },
-  { href: '#leistungen', label: 'Diskrete Vermarktung' },
-  { href: '#bewertung',  label: 'Immobilienbewertung' },
-  { href: '#angebote',   label: 'Suchauftrag anlegen' },
+  { href: '/leistungen', label: 'Immobilie verkaufen' },
+  { href: '/leistungen', label: 'Immobilie vermieten' },
+  { href: '/leistungen', label: 'Diskrete Vermarktung' },
+  { href: '/leistungen', label: 'Immobilienbewertung' },
+  { href: '/leistungen', label: 'Suchauftrag anlegen' },
 ]
 
 const BRAND_NAME = 'Maldonado & Winz'
 
-// Nav-Link-Klasse: Mixed Case, normal weight – wie Volmer & Bönnen
-const navLinkBase = 'font-sans text-[14px] font-normal tracking-[0.01em] transition-colors duration-200 whitespace-nowrap'
+const navLinkBase =
+  'font-sans text-[14px] font-normal tracking-[0.01em] transition-colors duration-200 whitespace-nowrap'
 
 function openBewertungWizard() {
   document.dispatchEvent(new CustomEvent('open-bewertung-wizard'))
@@ -41,10 +41,9 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
-    // Guard: only update state when value actually changes → avoids re-renders on every scroll event
     const onScroll = () => {
       const next = window.scrollY > 60
-      setScrolled(prev => prev === next ? prev : next)
+      setScrolled((prev) => (prev === next ? prev : next))
     }
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
@@ -52,10 +51,14 @@ export default function Navbar() {
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : 'auto'
-    return () => { document.body.style.overflow = 'auto' }
+    return () => {
+      document.body.style.overflow = 'auto'
+    }
   }, [menuOpen])
 
-  const linkCls = scrolled ? 'text-grey-600 hover:text-brown' : 'text-white/55 hover:text-white'
+  const linkCls = scrolled
+    ? 'text-grey-600 hover:text-brown'
+    : 'text-white/55 hover:text-white'
 
   return (
     <>
@@ -69,12 +72,10 @@ export default function Navbar() {
             : 'bg-transparent border-b border-white/8'
         }`}
       >
-        {/* ── Grid: [1fr] [auto] [1fr] → mathematisch exakte Zentrierung ── */}
         <div
           className="max-w-screen-2xl mx-auto px-6 lg:px-16 h-[76px] grid items-center"
           style={{ gridTemplateColumns: '1fr auto 1fr' }}
         >
-
           {/* COL 1 – Mobile: Brand links; Desktop: Nav rechtsbündig ans Logo */}
           <div className="flex items-center lg:justify-end">
             <Link
@@ -85,7 +86,7 @@ export default function Navbar() {
             >
               {BRAND_NAME}
             </Link>
-            <nav className="hidden lg:flex items-center gap-6">
+            <nav aria-label="Hauptnavigation links" className="hidden lg:flex items-center gap-6">
               {leftLinks.map((l) => (
                 <Link key={l.label} href={l.href} className={`${navLinkBase} ${linkCls}`}>
                   {l.label}
@@ -94,9 +95,10 @@ export default function Navbar() {
             </nav>
           </div>
 
-          {/* COL 2 – Logo: gleicher px-Abstand links und rechts = symmetrischer Gap zu beiden Navs */}
+          {/* COL 2 – Logo zentriert */}
           <Link
             href="/"
+            aria-label="Maldonado & Winz Immobilien – Startseite"
             className={`flex flex-col items-center px-10 transition-opacity hover:opacity-70 ${
               scrolled ? 'text-brown' : 'text-white'
             }`}
@@ -104,16 +106,18 @@ export default function Navbar() {
             <span className="font-display text-[30px] font-bold tracking-[-0.02em] leading-none whitespace-nowrap">
               {BRAND_NAME}
             </span>
-            <span className={`hidden lg:block font-sans text-[9px] font-medium tracking-[0.3em] mt-[6px] whitespace-nowrap ${
-              scrolled ? 'text-taupe' : 'text-white/50'
-            }`}>
+            <span
+              className={`hidden lg:block font-sans text-[9px] font-medium tracking-[0.3em] mt-[6px] whitespace-nowrap ${
+                scrolled ? 'text-taupe' : 'text-white/50'
+              }`}
+            >
               IMMOBILIEN
             </span>
           </Link>
 
-          {/* COL 3 – Desktop: Nav linksbündig ans Logo, CTA+Hamburger via ml-auto rechts */}
+          {/* COL 3 – Desktop: Nav + CTA + Hamburger */}
           <div className="flex items-center">
-            <nav className="hidden lg:flex items-center gap-6">
+            <nav aria-label="Hauptnavigation rechts" className="hidden lg:flex items-center gap-6">
               {rightLinks.map((l) => (
                 <Link key={l.label} href={l.href} className={`${navLinkBase} ${linkCls}`}>
                   {l.label}
@@ -123,6 +127,7 @@ export default function Navbar() {
             <div className="ml-auto flex items-center gap-4">
               <button
                 onClick={openBewertungWizard}
+                aria-label="Kostenlose Immobilienbewertung starten"
                 className={`hidden lg:inline-flex items-center px-5 py-[9px] font-sans text-[13px] font-medium tracking-[0.02em] transition-colors duration-200 ${
                   scrolled
                     ? 'bg-taupe text-sand hover:bg-taupe-dark'
@@ -134,10 +139,20 @@ export default function Navbar() {
               <button
                 onClick={() => setMenuOpen(true)}
                 aria-label="Menü öffnen"
+                aria-expanded={menuOpen}
+                aria-controls="main-menu"
                 className="flex flex-col justify-center gap-[5px] p-1 group"
               >
-                <span className={`block w-[22px] h-px transition-colors ${scrolled ? 'bg-brown' : 'bg-white'} group-hover:opacity-50`} />
-                <span className={`block w-[14px] h-px transition-colors ${scrolled ? 'bg-brown' : 'bg-white'} group-hover:opacity-50`} />
+                <span
+                  className={`block w-[22px] h-px transition-colors ${
+                    scrolled ? 'bg-brown' : 'bg-white'
+                  } group-hover:opacity-50`}
+                />
+                <span
+                  className={`block w-[14px] h-px transition-colors ${
+                    scrolled ? 'bg-brown' : 'bg-white'
+                  } group-hover:opacity-50`}
+                />
               </button>
             </div>
           </div>
@@ -148,11 +163,15 @@ export default function Navbar() {
       <AnimatePresence>
         {menuOpen && (
           <motion.div
+            id="main-menu"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.22 }}
             className="fixed inset-0 z-[100] bg-sand flex flex-col"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Hauptmenü"
           >
             {/* Top bar */}
             <div className="flex items-center justify-between px-6 lg:px-16 h-[76px] border-b border-grey-200">
@@ -177,7 +196,7 @@ export default function Navbar() {
               {/* Primary links */}
               <div className="flex-1 px-6 lg:px-14 py-10 lg:py-16 border-b lg:border-b-0 lg:border-r border-grey-200">
                 <p className="label mb-8 text-taupe">Navigation</p>
-                <nav className="space-y-1">
+                <nav aria-label="Menü-Navigation">
                   {primaryLinks.map((l, i) => (
                     <motion.div
                       key={l.label}
@@ -193,7 +212,11 @@ export default function Navbar() {
                                    hover:text-taupe transition-colors duration-200"
                       >
                         {l.label}
-                        <Plus size={16} className="text-grey-300 group-hover:rotate-45 group-hover:text-taupe transition-all duration-300" />
+                        <Plus
+                          size={16}
+                          className="text-grey-300 group-hover:rotate-45 group-hover:text-taupe transition-all duration-300"
+                          aria-hidden="true"
+                        />
                       </Link>
                     </motion.div>
                   ))}
@@ -220,19 +243,22 @@ export default function Navbar() {
                 <div>
                   <p className="label mb-4 text-taupe">Direktkontakt</p>
                   <a
-                    href="tel:+498912345678"
+                    href="tel:+4920112345678"
                     className="flex items-center gap-2 font-sans text-sm text-brown font-medium mb-1 hover:text-taupe transition-colors"
                   >
-                    <Phone size={13} />
-                    +49 89 1234 5678
+                    <Phone size={13} aria-hidden="true" />
+                    +49 201 1234 5678
                   </a>
-                  <p className="font-sans text-sm text-grey-500 leading-relaxed">
+                  <address className="not-italic font-sans text-sm text-grey-500 leading-relaxed">
                     Rüttenscheider Str. 52<br />
                     45130 Essen
-                  </p>
+                  </address>
                 </div>
                 <button
-                  onClick={() => { setMenuOpen(false); openBewertungWizard() }}
+                  onClick={() => {
+                    setMenuOpen(false)
+                    openBewertungWizard()
+                  }}
                   className="btn-gold self-start mt-auto"
                 >
                   Immobilie bewerten
